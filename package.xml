@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package name="eu.hanashi.wsc.teamspeak-viewer" xmlns="https://www.woltlab.com" xmlns:xsi="https://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://www.woltlab.com https://www.woltlab.com/XSD/vortex/package.xsd">
+    <packageinformation>
+        <packagename><![CDATA[TeamSpeak Viewer]]></packagename>
+        <packagename language="de"><![CDATA[TeamSpeak-Viewer]]></packagename>
+        <packagedescription><![CDATA[Viewer for TeamSpeak.]]></packagedescription>
+        <packagedescription language="de"><![CDATA[Viewer für TeamSpeak.]]></packagedescription>
+        <version>1.0.0 Alpha 1</version>
+        <date>2019-02-07</date>
+    </packageinformation>
+
+    <authorinformation>
+        <author><![CDATA[Hanashi]]></author>
+        <authorurl><![CDATA[https://hanashi.eu/]]></authorurl>
+    </authorinformation>
+	
+	<compatibility>
+		<api version="2018" />
+	</compatibility>
+
+    <requiredpackages>
+        <requiredpackage minversion="3.1.7">com.woltlab.wcf</requiredpackage>
+        <requiredpackage minversion="1.4.0">eu.hanashi.wsc.teamspeak-api</requiredpackage>
+    </requiredpackages>
+	
+	<excludedpackages>
+        <excludedpackage version="3.2.0 Alpha 1">com.woltlab.wcf</excludedpackage>
+    </excludedpackages>
+
+    <instructions type="install">
+		<!-- files -->
+        <instruction type="file" />
+		
+		<!-- templates -->
+		<!-- <instruction type="acpTemplate" /> -->
+		<instruction type="template" />
+		
+		<!-- language -->
+        <instruction type="language"/>
+		
+		<!-- config -->
+        <!-- <instruction type="acpMenu" /> -->
+        <!-- <instruction type="sql" /> -->
+        <!-- <instruction type="userGroupOption" /> -->
+        <instruction type="option" />
+        <instruction type="page" />
+        <instruction type="menuItem" />
+    </instructions>
+</package>

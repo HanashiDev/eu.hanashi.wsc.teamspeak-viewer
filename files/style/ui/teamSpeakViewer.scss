@@ -1,0 +1,25 @@
+@media screen and (min-width: 769px), print {
+    .teamspeakViewerOverview {
+		columns: auto;
+		column-gap: 40px;
+        column-rule: 1px solid #4179ad;
+        column-width: 450px;
+		margin-top: 40px;
+	}
+	.teamspeakViewerOverview > .section {
+		break-inside: avoid;
+		margin-bottom: 20px;
+		margin-top: 0;
+		overflow: hidden;
+		page-break-inside: avoid;
+	}
+}
+
+.teamspeakViewerOverview {
+	padding: 10px;
+}
+
+.teamspeakViewerOverview .section .section > .sectionTitle {
+	border-bottom-width: 0;
+    margin-bottom: 0;
+}
