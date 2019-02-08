@@ -23,3 +23,44 @@
 	border-bottom-width: 0;
     margin-bottom: 0;
 }
+
+.channelWrapper {
+	display: flex;
+
+	.channelCollapse {
+		width: 20px;
+		flex: 0 0 auto;
+	}
+
+	.channelSubscription {
+		flex: 0 0 auto;
+		width: 20px;
+	}
+
+	.channelName {
+		flex: 1 1 auto;
+		white-space: nowrap;
+		overflow: hidden;
+	}
+
+	.channelIcons {
+		flex: 0 0 auto;
+		width: 20px;
+		margin-left: 5px;
+		text-align: right;
+	}
+
+	.channelSpacerL {
+		text-align: left;
+	}
+	.channelSpacerC {
+		text-align: center;
+	}
+	.channelSpacerR {
+		text-align: right;
+	}
+}
+
+.channelWrapper:hover {
+	background: #EAEAEA;
+}
