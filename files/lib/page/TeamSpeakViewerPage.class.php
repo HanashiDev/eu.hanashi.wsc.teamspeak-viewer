@@ -2,12 +2,15 @@
 namespace wcf\page;
 use wcf\data\teamspeak\Teamspeak;
 use wcf\system\teamspeak\TeamSpeakViewerHandler;
+use wcf\system\template\TeamSpeakViewerTemplateHandler;
 use wcf\system\WCF;
 
 class TeamSpeakViewerPage extends AbstractPage {
     protected $serverinfo;
 
     protected $channellist;
+
+    protected $clientlist;
 
     protected $teamspeakObj;
 
@@ -19,6 +22,7 @@ class TeamSpeakViewerPage extends AbstractPage {
 
         $this->serverinfo = TeamSpeakViewerHandler::getInstance()->serverinfo();
         $this->channellist = TeamSpeakViewerHandler::getInstance()->getChannels();
+        $this->clientlist = TeamSpeakViewerHandler::getInstance()->getClients();
         $this->teamspeakObj = new Teamspeak(HANASHI_TEAMSPEAK_VIEWER_IDENTITY);
     }
 
@@ -28,15 +32,17 @@ class TeamSpeakViewerPage extends AbstractPage {
     public function assignVariables() {
         parent::assignVariables();
 
-        // wcfDebug($this->channellist);
+        // wcfDebug($this->clientlist);
         // preg_match('/^(\[([a-z\*])[a-zA-Z0-9\*]?spacer([0-9a-zA-Z]+)?\])(.*)$/', '[c0spacer0]Huhu_', $matches);
         // wcfDebug($matches);
 
         WCF::getTPL()->assign([
             'serverinfo' => $this->serverinfo,
             'channellist' => $this->channellist,
+            'clientlist' => $this->clientlist,
             'teamspeakObj' => $this->teamspeakObj,
-            'teamspeakLink' => $this->getTeamspeakLink()
+            'teamspeakLink' => $this->getTeamspeakLink(),
+            'tsTemplate' => new TeamSpeakViewerTemplateHandler()
         ]);
     }
 

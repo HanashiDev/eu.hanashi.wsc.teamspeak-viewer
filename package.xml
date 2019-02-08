@@ -20,7 +20,7 @@
 
     <requiredpackages>
         <requiredpackage minversion="3.1.7">com.woltlab.wcf</requiredpackage>
-        <requiredpackage minversion="1.4.0">eu.hanashi.wsc.teamspeak-api</requiredpackage>
+        <requiredpackage minversion="1.4.1">eu.hanashi.wsc.teamspeak-api</requiredpackage>
     </requiredpackages>
 	
 	<excludedpackages>

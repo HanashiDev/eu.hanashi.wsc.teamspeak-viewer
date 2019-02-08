@@ -47,6 +47,14 @@
                             {/if}
                         </div>
                     </div>
+                    {if !$clientlist[$channel['cid']]|empty}
+                        {include file='__teamSpeakViewerClients' __channelID=$channel['cid'] __level=0}
+                    {/if}
+
+                    {if $channel['childs']|count > 0}
+                        {* {include file='__teamSpeakViewerChildChannels' __childChannels=$channel['childs'] __childPadding=20 __level=1} *}
+                        {@$tsTemplate->showChannels($channel['childs'])}
+                    {/if}
                 </li>
             {/foreach}
         </ul>
@@ -101,11 +109,11 @@
         <dl>
             <dt>Aktuelle Clients:</dt>
             <dd>
-                {assign var='clientsOnline' value=$serverinfo[0]['virtualserver_clientsonline']}
+                {* {assign var='clientsOnline' value=$serverinfo[0]['virtualserver_clientsonline']}
                 {if !HANASHI_TEAMSPEAK_VIEWER_SHOW_QUERY}
                     {assign var='clientsOnline' value=$serverinfo[0]['virtualserver_clientsonline'] - 1}
-                {/if}
-                {$clientsOnline}/{$serverinfo[0]['virtualserver_maxclients']}
+                {/if} *}
+                {$serverinfo[0]['virtualserver_clientsonline']}/{$serverinfo[0]['virtualserver_maxclients']}
             </dd>
         </dl>
         <dl>

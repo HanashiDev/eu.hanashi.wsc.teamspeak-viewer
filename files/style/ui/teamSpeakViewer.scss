@@ -50,7 +50,7 @@
 
 	.channelIcons {
 		flex: 0 0 auto;
-		width: 20px;
+		min-width: 20px;
 		margin-left: 5px;
 		text-align: right;
 	}
@@ -63,6 +63,10 @@
 	}
 	.channelSpacerR {
 		text-align: right;
+	}
+
+	.recording {
+		color: #8C0000;
 	}
 }
 
