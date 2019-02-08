@@ -27,6 +27,11 @@
 .channelWrapper {
 	display: flex;
 
+	img {
+		width: 16px;
+		height: 16px;
+	}
+
 	.channelCollapse {
 		width: 20px;
 		flex: 0 0 auto;

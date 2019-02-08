@@ -10,6 +10,21 @@
     <section class="section">
         <h2 class="sectionTitle">Channelliste</h2>
         <ul>
+            <li>
+                <div class="channelWrapper">
+                    <div class="channelCollapse">
+                        <img src="{$__wcf->getPath()}images/teamspeak_viewer/server.svg">
+                    </div>
+                    <div class="channelName">
+                        {$serverinfo[0]['virtualserver_name']}
+                    </div>
+                    <div class="channelIcons">
+                        {* {if $channel['channel_icon_id'] != 0}
+                            <img src="{$__wcf->getPath()}images/teamspeak_viewer/icon_{$channel['channel_icon_id']}.png">
+                        {/if} *}
+                    </div>
+                </div>
+            </li>
             {foreach from=$channellist item=channel}
                 <li>
                     <div class="channelWrapper">
@@ -18,16 +33,18 @@
                                 <span class="icon icon16 fa-caret-down"></span>
                             {/if}
                         </div>
-                        <div class="channelSubscription">
-                            {if !$channel['is_spacer']}
-                                <img src="{$__wcf->getPath()}images/teamspeak_viewer/channel_unsubscribed.svg" width="16">
-                            {/if}
-                        </div>
+                        {if !$channel['is_spacer']}
+                            <div class="channelSubscription">
+                                <img src="{$__wcf->getPath()}images/teamspeak_viewer/channel_unsubscribed.svg">
+                            </div>
+                        {/if}
                         <div class="channelName{if $channel['is_spacer']} channelSpacer{$channel['spacer_type']}{/if}">
                             {$channel['channel_name']}
                         </div>
                         <div class="channelIcons">
-                            <img src="{$__wcf->getPath()}images/teamspeak_viewer/channel_unsubscribed.svg" width="16">
+                            {if $channel['channel_icon_id'] != 0}
+                                <img src="{$__wcf->getPath()}images/teamspeak_viewer/icon_{$channel['channel_icon_id']}.png">
+                            {/if}
                         </div>
                     </div>
                 </li>

@@ -29,6 +29,7 @@ class TeamSpeakViewerHandler extends AbstractTeamSpeakHandler {
             $channelListTmp = [];
             foreach ($channellist as $channel) {
                 if ($channel['pid'] == 0) {
+                    // Berechnen ob Channel spacer ist
                     if (preg_match('/^(\[([a-z\*])[a-zA-Z0-9\*]?spacer([0-9a-zA-Z]+)?\])(.*)$/', $channel['channel_name'], $matches)) {
                         $channel['is_spacer'] = true;
 
@@ -49,6 +50,12 @@ class TeamSpeakViewerHandler extends AbstractTeamSpeakHandler {
                         $channel['is_spacer'] = false;
                     }
 
+                    // Icon checken
+                    if ($channel['channel_icon_id'] != 0) {
+                        $channel['channel_icon_id'] = TeamSpeakUtil::getCorrectIconID($channel['channel_icon_id']);
+                        $this->checkIcon($channel['channel_icon_id']);
+                    }
+
                     $channelListTmp[$channel['cid']] = $channel;
                     $channelListTmp[$channel['cid']]['childs'] = TeamSpeakUtil::getChilds($channellist, 'pid', $channel['cid']);
                 }
@@ -57,6 +64,14 @@ class TeamSpeakViewerHandler extends AbstractTeamSpeakHandler {
             return $channelListTmp;
         } catch (TeamSpeakException $e) {
             return [];
+        }
+    }
+
+    private function checkIcon($iconID) {
+        $filename = 'icon_'.$iconID;
+        if (!file_exists(WCF_DIR . 'images/teamspeak_viewer/'.$filename.'.png')) {
+            $tmpFile = $this->downloadFile(0, $filename);
+            rename($tmpFile, WCF_DIR . 'images/teamspeak_viewer/'.$filename.'.png');
         }
     }
 }
