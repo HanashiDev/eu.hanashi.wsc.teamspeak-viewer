@@ -140,7 +140,9 @@ define(['DateUtil','Ajax'], function(DateUtil, Ajax) {
 
             // Beschreibung
             if (data.channel_description != null) {
-                infoBox.appendChild(this._createElement('Channel Topic:', data.channel_description));
+                var descriptionDev = document.createElement('div');
+                descriptionDev.innerHTML = data.channel_description;
+                infoBox.appendChild(this._createElement('Channel Topic:', descriptionDev));
             }
         },
 
