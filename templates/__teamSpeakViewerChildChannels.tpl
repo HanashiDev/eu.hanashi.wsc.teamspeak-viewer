@@ -15,6 +15,15 @@
                     {$channel['channel_name']}
                 </div>
                 <div class="channelIcons">
+                    {if $channel['more_infos']['channel_flag_default'] == 1}
+                        <img src="{$__wcf->getPath()}images/teamspeak_viewer/default.svg">
+                    {/if}
+                    {if $channel['more_infos']['channel_flag_password'] == 1}
+                        <img src="{$__wcf->getPath()}images/teamspeak_viewer/register.svg">
+                    {/if}
+                    {if $channel['more_infos']['channel_needed_talk_power'] > 0}
+                        <img src="{$__wcf->getPath()}images/teamspeak_viewer/moderated.svg">
+                    {/if}
                     {if $channel['channel_icon_id'] != 0}
                         <img src="{$__wcf->getPath()}images/teamspeak_viewer/icon_{$channel['channel_icon_id']}.png">
                     {/if}

@@ -1,5 +1,6 @@
 <?php
 namespace wcf\system\teamspeak;
+use wcf\system\cache\builder\TeamSpeakViewerChannelBuilder;
 use wcf\system\exception\TeamSpeakException;
 use wcf\util\TeamSpeakUtil;
 
@@ -25,6 +26,11 @@ class TeamSpeakViewerHandler extends AbstractTeamSpeakHandler {
     public function getChannels() {
         try {
             $channellist = $this->channellist(['-icon']);
+
+            foreach ($channellist as $key => $channel) {
+                $channel['more_infos'] = TeamSpeakViewerChannelBuilder::getInstance()->getData([$channel['cid']]);
+                $channellist[$key] = $channel;
+            }
 
             $channelListTmp = [];
             foreach ($channellist as $channel) {

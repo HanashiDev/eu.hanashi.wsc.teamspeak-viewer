@@ -42,6 +42,15 @@
                             {$channel['channel_name']}
                         </div>
                         <div class="channelIcons">
+                            {if $channel['more_infos']['channel_flag_default'] == 1}
+                                <img src="{$__wcf->getPath()}images/teamspeak_viewer/default.svg">
+                            {/if}
+                            {if $channel['more_infos']['channel_flag_password'] == 1}
+                                <img src="{$__wcf->getPath()}images/teamspeak_viewer/register.svg">
+                            {/if}
+                            {if $channel['more_infos']['channel_needed_talk_power'] > 0}
+                                <img src="{$__wcf->getPath()}images/teamspeak_viewer/moderated.svg">
+                            {/if}
                             {if $channel['channel_icon_id'] != 0}
                                 <img src="{$__wcf->getPath()}images/teamspeak_viewer/icon_{$channel['channel_icon_id']}.png">
                             {/if}
@@ -73,21 +82,20 @@
             <dl>
                 <dt>Adresse:</dt>
                 <dd>
+                    {assign var='teamSpeakAddress' value=''}
                     {if HANASHI_TEAMSPEAK_VIEWER_ADDRESS|empty}
-                        {$teamspeakObj->hostname}
+                        {capture append=teamSpeakAddress}{$teamspeakObj->hostname}{/capture}
                     {else}
-                        {HANASHI_TEAMSPEAK_VIEWER_ADDRESS}
+                        {capture append=teamSpeakAddress}{HANASHI_TEAMSPEAK_VIEWER_ADDRESS}{/capture}
                     {/if}
-                </dd>
-            </dl>
-            <dl>
-                <dt>Port:</dt>
-                <dd>
                     {if HANASHI_TEAMSPEAK_VIEWER_PORT|empty}
-                        {$teamspeakObj->virtualServerPort}
-                    {else}
-                        {HANASHI_TEAMSPEAK_VIEWER_PORT}
+                        {if $teamspeakObj->virtualServerPort != 9987}
+                            {capture append=teamSpeakAddress}:{$teamspeakObj->virtualServerPort}{/capture}
+                        {/if}
+                    {else if HANASHI_TEAMSPEAK_VIEWER_PORT != 9987}
+                        {capture append=teamSpeakAddress}:{HANASHI_TEAMSPEAK_VIEWER_PORT}{/capture}
                     {/if}
+                    {$teamSpeakAddress}
                 </dd>
             </dl>
         {/if}
@@ -108,7 +116,7 @@
         <dl>
             <dt>Aktuelle Clients:</dt>
             <dd>
-                {$serverinfo[0]['virtualserver_clientsonline']}/{$serverinfo[0]['virtualserver_maxclients']}
+                {$serverinfo[0]['virtualserver_clientsonline']} / {$serverinfo[0]['virtualserver_maxclients']}
             </dd>
         </dl>
         <dl>

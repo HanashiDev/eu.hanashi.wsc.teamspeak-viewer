@@ -95,6 +95,55 @@ define(['DateUtil','Ajax'], function(DateUtil, Ajax) {
             }
         },
 
+        _showChannelInfos: function(data) {
+            var infoBox = document.getElementById('TeamSpeakServerInfo');
+            infoBox.innerHTML = '';
+
+            // Name
+            var sectionTitle = document.createElement('h2');
+            sectionTitle.classList.add('sectionTitle');
+            sectionTitle.innerText = data.channel_name;
+            infoBox.appendChild(sectionTitle);
+
+            // Channel Topic
+            if (data.channel_topic != null) {
+                infoBox.appendChild(this._createElement('Channel Topic:', data.channel_topic));
+            }
+
+            // Audio Codec
+            // TODO: Zahl auftrennen
+            infoBox.appendChild(this._createElement('Audio Codec:', data.channel_codec));
+
+            // Eigenschaften
+            var property = '';
+            if (data.channel_flag_permanent == 1) {
+                property = 'Permanent';
+            } else if (data.channel_flag_semi_permanent == 1) {
+                property = 'Semi-Permanent';
+            } else {
+                property = 'Temporär';
+            }
+            if (data.channel_flag_default == 1) {
+                property = property + ', Standard';
+            } else if (data.channel_flag_password == 1) {
+                property = property + ', Passwort';
+            }
+            infoBox.appendChild(this._createElement('Eigenschaften:', property));
+
+            // Aktuelle Clients
+            // TODO
+
+            // Moderiert
+            if (data.channel_needed_talk_power > 0) {
+                infoBox.appendChild(this._createElement('Moderiert:', 'Ja'));
+            }
+
+            // Beschreibung
+            if (data.channel_description != null) {
+                infoBox.appendChild(this._createElement('Channel Topic:', data.channel_description));
+            }
+        },
+
         _createGroupElement: function(groupData) {
             var groupList = document.createElement('ul');
             for (var i = 0; i < groupData.length; i++) {
@@ -151,6 +200,8 @@ define(['DateUtil','Ajax'], function(DateUtil, Ajax) {
             // this._showMessages(data.returnValues);
             if (data.returnValues.type == 'client') {
                 this._showClientInfos(data.returnValues.data);
+            } else if (data.returnValues.type == 'channel') {
+                this._showChannelInfos(data.returnValues.data);
             } else {
                 console.log(data.returnValues);
             }

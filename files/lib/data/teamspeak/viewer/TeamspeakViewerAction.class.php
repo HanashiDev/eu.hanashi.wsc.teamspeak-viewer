@@ -2,6 +2,7 @@
 namespace wcf\data\teamspeak\viewer;
 use wcf\data\AbstractDatabaseObjectAction;
 use wcf\system\cache\builder\TeamSpeakViewerClientBuilder;
+use wcf\system\cache\builder\TeamSpeakViewerChannelBuilder;
 use wcf\system\WCF;
 
 class TeamspeakViewerAction extends AbstractDatabaseObjectAction {
@@ -22,6 +23,13 @@ class TeamspeakViewerAction extends AbstractDatabaseObjectAction {
             if (count($data) == 0) return ['type' => 'unknown'];
             return [
                 'type' => 'client',
+                'data' => $data
+            ];
+        } else if ($type == 'channel') {
+            $data = TeamSpeakViewerChannelBuilder::getInstance()->getData([$id]);
+            if (count($data) == 0) return ['type' => 'unknown'];
+            return [
+                'type' => 'channel',
                 'data' => $data
             ];
         }
