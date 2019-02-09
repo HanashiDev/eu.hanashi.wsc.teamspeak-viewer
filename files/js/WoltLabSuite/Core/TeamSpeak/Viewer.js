@@ -1,4 +1,4 @@
-define(['Ajax'], function(Ajax) {
+define(['DateUtil','Ajax'], function(DateUtil, Ajax) {
     "use strict";
 
     function TeamSpeakViewer() {
@@ -61,32 +61,81 @@ define(['Ajax'], function(Ajax) {
         },
 
         _showClientInfos: function(data) {
-            console.log(data);
             var infoBox = document.getElementById('TeamSpeakServerInfo');
             infoBox.innerHTML = '';
 
+            // Name
             var sectionTitle = document.createElement('h2');
             sectionTitle.classList.add('sectionTitle');
             sectionTitle.innerText = data.client_nickname;
             infoBox.appendChild(sectionTitle);
 
-            var versionWrapper = document.createElement('dl');
-            var versionDesc = document.createElement('dt');
-            versionDesc.innerText = 'Version:';
-            versionWrapper.appendChild(versionDesc);
-            var version = document.createElement('dd');
-            version.innerText = data.client_version + ' auf ' + data.client_platform;
-            versionWrapper.appendChild(version);
-            infoBox.appendChild(versionWrapper);
+            // Version
+            infoBox.appendChild(this._createElement('Version:', data.client_version + ' auf ' + data.client_platform));
 
-            var onlineWrapper = document.createElement('dl');
-            var onlineDesc = document.createElement('dt');
-            onlineDesc.innerText = 'Online seit:';
-            onlineWrapper.appendChild(onlineDesc);
-            var online = document.createElement('dd');
-            online.innerText = 'test';
-            onlineWrapper.appendChild(online);
-            infoBox.appendChild(onlineWrapper);
+            // Online seit
+            infoBox.appendChild(this._createElement('Online seit:', DateUtil.getTimeElement(new Date(data.connection_connected_time))));
+
+            // Beschreibung
+            if (data.client_description != null) {
+                infoBox.appendChild(this._createElement('Beschreibung:', data.client_description));
+            }
+
+            // Servergruppen
+            infoBox.appendChild(this._createElement('Server Gruppen:', this._createGroupElement(data.client_servergroups)));
+
+            // Channelgruppen
+            infoBox.appendChild(this._createElement('Channel Gruppe:', this._createGroupElement(data.client_channel_group_id)));
+
+            // avatar
+            if (data.avatar) {
+                var avatarImg = document.createElement('img');
+                avatarImg.setAttribute('src', WCF_PATH + 'images/teamspeak_viewer/avatar/avatar_' + data.client_base64HashClientUID + '.png');
+                infoBox.appendChild(this._createElement('Avatar:', avatarImg));
+            }
+        },
+
+        _createGroupElement: function(groupData) {
+            var groupList = document.createElement('ul');
+            for (var i = 0; i < groupData.length; i++) {
+                var group = groupData[i];
+                var groupEntry = document.createElement('li');
+                groupEntry.classList.add('groupWrapper');
+
+                // Icon
+                var groupIconDiv = document.createElement('div');
+                groupIconDiv.classList.add('channelSubscription');
+                if (group.iconid != null) {
+                    var groupIcon = document.createElement('img');
+                    groupIcon.setAttribute('src', WCF_PATH + 'images/teamspeak_viewer/' + group.iconid);
+                    groupIconDiv.appendChild(groupIcon);
+                }
+                groupEntry.appendChild(groupIconDiv);
+
+                // Gruppenname
+                var groupNameDiv = document.createElement('div');
+                groupNameDiv.classList.add('channelName');
+                groupNameDiv.innerText = group.name;
+                groupEntry.appendChild(groupNameDiv);
+
+                groupList.appendChild(groupEntry);
+            }
+            return groupList;
+        },
+
+        _createElement: function(name, content) {
+            var wrapper = document.createElement('dl');
+            var desc = document.createElement('dt');
+            desc.innerText = name;
+            wrapper.appendChild(desc);
+            var contentDD = document.createElement('dd');
+            if (typeof content === 'string') {
+                contentDD.innerText = content;
+            } else {
+                contentDD.appendChild(content);
+            }
+            wrapper.appendChild(contentDD);
+            return wrapper;
         },
 
         _ajaxSetup: function() {

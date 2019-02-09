@@ -18,9 +18,11 @@ class TeamspeakViewerAction extends AbstractDatabaseObjectAction {
         $id = $this->parameters['data']['id'];
         
         if ($type == 'client') {
+            $data = TeamSpeakViewerClientBuilder::getInstance()->getData([$id]);
+            if (count($data) == 0) return ['type' => 'unknown'];
             return [
                 'type' => 'client',
-                'data' => TeamSpeakViewerClientBuilder::getInstance()->getData([$id])
+                'data' => $data
             ];
         }
 

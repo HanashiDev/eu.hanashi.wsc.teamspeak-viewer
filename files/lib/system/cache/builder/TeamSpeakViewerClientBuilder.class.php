@@ -18,7 +18,11 @@ class TeamSpeakViewerClientBuilder extends AbstractCacheBuilder {
         try {
             $id = $parameters[0];
             $clientinfo = TeamSpeakViewerHandler::getInstance()->clientinfo(['clid' => $id]);
+            $servergrouplist = TeamSpeakViewerHandler::getInstance()->getServergroups();
+            $channelgrouplist = TeamSpeakViewerHandler::getInstance()->getChannelgroups();
             if (count($clientinfo) == 0) return [];
+
+            // wcfDebug($servergrouplist);
 
             $avatar = false;
             if (!empty($clientinfo[0]['client_flag_avatar'])) {
@@ -31,18 +35,35 @@ class TeamSpeakViewerClientBuilder extends AbstractCacheBuilder {
                 $request = $clientinfo[0]['client_talk_request_msg'];
             }
 
-            $client_description = '';
+            $client_description = null;
             if (!empty($clientinfo[0]['client_description'])) {
                 $client_description = $clientinfo[0]['client_description'];
             }
+
+            $clientServerGroupsSplitted = explode(',', $clientinfo[0]['client_servergroups']);
+            $serverGroupsTmp = [];
+            foreach ($clientServerGroupsSplitted as $clientServerGroupID) {
+                if (!empty($servergrouplist[$clientServerGroupID])) {
+                    $serverGroupsTmp[] = $servergrouplist[$clientServerGroupID];
+                }
+            }
+
+            $channelGroupTmp = [];
+            if (!empty($channelgrouplist[$clientinfo[0]['client_channel_group_id']])) {
+                // TODO: geerbten Channel hinzufügen
+                $channelGroupTmp[] = $channelgrouplist[$clientinfo[0]['client_channel_group_id']];
+            }
+            // wcfDebug($channelGroupTmp);
             
             return [
                 'client_nickname' => $clientinfo[0]['client_nickname'],
                 'client_version' => $clientinfo[0]['client_version'],
                 'client_platform' => $clientinfo[0]['client_platform'],
-                'connection_connected_time' => $clientinfo[0]['connection_connected_time'],
-                'client_servergroups' => $clientinfo[0]['client_servergroups'],
-                'client_channel_group_id' => $clientinfo[0]['client_channel_group_id'],
+                'connection_connected_time' => (TIME_NOW * 1000) - $clientinfo[0]['connection_connected_time'],
+                'client_servergroups' => $serverGroupsTmp,
+                'client_channel_group_id' => $channelGroupTmp,
+                'cid' => $clientinfo[0]['cid'],
+                'client_channel_group_inherited_channel_id' => $clientinfo[0]['client_channel_group_inherited_channel_id'],
                 'avatar' => $avatar,
                 'client_base64HashClientUID' => $clientinfo[0]['client_base64HashClientUID'],
                 'client_input_muted' => $clientinfo[0]['client_input_muted'],

@@ -1,17 +1,36 @@
 @media screen and (min-width: 769px), print {
     .teamspeakViewerOverview {
-		columns: auto;
-		column-gap: 40px;
-        column-rule: 1px solid #4179ad;
-        column-width: 450px;
-		margin-top: 40px;
+		// columns: auto;
+		// column-gap: 40px;
+        // column-rule: 1px solid #4179ad;
+        // column-width: 450px;
+		// margin-top: 40px;
+		display:flex;
+
+		.section {
+			// break-inside: avoid;
+			// margin-bottom: 20px;
+			// margin-top: 0;
+			// overflow: hidden;
+			// page-break-inside: avoid;
+			width: 50%;
+			margin-top: 0;
+		}
+
+		.section:nth-of-type(1)
+		{
+			padding-right: 20px;
+			border-right: 1px solid #4179ad;
+		}
+
+		.section:nth-of-type(2)
+		{
+			padding-left: 20px;
+		}
 	}
-	.teamspeakViewerOverview > .section {
-		break-inside: avoid;
-		margin-bottom: 20px;
+
+	#TeamSpeakServerInfo {
 		margin-top: 0;
-		overflow: hidden;
-		page-break-inside: avoid;
 	}
 }
 
@@ -24,23 +43,19 @@
     margin-bottom: 0;
 }
 
-.channelWrapper {
+.channelWrapper, .groupWrapper {
 	display: flex;
 	cursor: default;
 
 	img {
 		width: 16px;
 		height: 16px;
+		vertical-align: middle;
 	}
 
-	.channelCollapse {
+	.channelCollapse, .channelSubscription  {
 		width: 20px;
 		flex: 0 0 auto;
-	}
-
-	.channelSubscription {
-		flex: 0 0 auto;
-		width: 20px;
 	}
 
 	.channelName {
