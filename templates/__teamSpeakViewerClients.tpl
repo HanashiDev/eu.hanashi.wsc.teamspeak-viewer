@@ -51,6 +51,7 @@
                     {foreach from=$client['client_servergroups'] item=$servergroup}
                         <img src="{$__wcf->getPath()}images/teamspeak_viewer/{$servergroup}">
                     {/foreach}
+                    {* TODO: Client Icon ID *}
                 </div>
             </div>
         </li>

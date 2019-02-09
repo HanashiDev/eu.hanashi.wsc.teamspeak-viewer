@@ -60,6 +60,35 @@ define(['Ajax'], function(Ajax) {
             });
         },
 
+        _showClientInfos: function(data) {
+            console.log(data);
+            var infoBox = document.getElementById('TeamSpeakServerInfo');
+            infoBox.innerHTML = '';
+
+            var sectionTitle = document.createElement('h2');
+            sectionTitle.classList.add('sectionTitle');
+            sectionTitle.innerText = data.client_nickname;
+            infoBox.appendChild(sectionTitle);
+
+            var versionWrapper = document.createElement('dl');
+            var versionDesc = document.createElement('dt');
+            versionDesc.innerText = 'Version:';
+            versionWrapper.appendChild(versionDesc);
+            var version = document.createElement('dd');
+            version.innerText = data.client_version + ' auf ' + data.client_platform;
+            versionWrapper.appendChild(version);
+            infoBox.appendChild(versionWrapper);
+
+            var onlineWrapper = document.createElement('dl');
+            var onlineDesc = document.createElement('dt');
+            onlineDesc.innerText = 'Online seit:';
+            onlineWrapper.appendChild(onlineDesc);
+            var online = document.createElement('dd');
+            online.innerText = 'test';
+            onlineWrapper.appendChild(online);
+            infoBox.appendChild(onlineWrapper);
+        },
+
         _ajaxSetup: function() {
             return {
 				data: {
@@ -71,7 +100,11 @@ define(['Ajax'], function(Ajax) {
 
         _ajaxSuccess: function(data) {
             // this._showMessages(data.returnValues);
-            console.log(data);
+            if (data.returnValues.type == 'client') {
+                this._showClientInfos(data.returnValues.data);
+            } else {
+                console.log(data.returnValues);
+            }
         },
 
         _ajaxFailure: function() {

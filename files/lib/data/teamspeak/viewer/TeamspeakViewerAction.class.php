@@ -1,6 +1,7 @@
 <?php
 namespace wcf\data\teamspeak\viewer;
 use wcf\data\AbstractDatabaseObjectAction;
+use wcf\system\cache\builder\TeamSpeakViewerClientBuilder;
 use wcf\system\WCF;
 
 class TeamspeakViewerAction extends AbstractDatabaseObjectAction {
@@ -16,6 +17,13 @@ class TeamspeakViewerAction extends AbstractDatabaseObjectAction {
         $type = $this->parameters['data']['type'];
         $id = $this->parameters['data']['id'];
         
+        if ($type == 'client') {
+            return [
+                'type' => 'client',
+                'data' => TeamSpeakViewerClientBuilder::getInstance()->getData([$id])
+            ];
+        }
+
         return [];
     }
 }
