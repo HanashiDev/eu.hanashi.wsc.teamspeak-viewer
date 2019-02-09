@@ -1,6 +1,6 @@
 <ul>
     {foreach from=$__childChannels item=channel}
-        <li>
+        <li data-type="channel" data-id="{$channel['cid']}">
             <div class="channelWrapper" style="padding-left: {$channel['level'] * 20}px;">
                 <div class="channelCollapse">
                     {if $channel['childs']|count > 0}

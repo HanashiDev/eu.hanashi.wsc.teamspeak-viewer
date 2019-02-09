@@ -1,6 +1,6 @@
 <ul>
     {foreach from=$clientlist[$channel['cid']] item=client}
-        <li>
+        <li data-type="client" data-id="{$client['clid']}">
             <div class="channelWrapper" style="padding-left: {($__level * 20) + 20}px;">
                 <div class="channelCollapse"></div>
                 <div class="channelSubscription">
@@ -25,7 +25,6 @@
                     {/if}
                 </div>
                 <div class="channelName{if $client['client_is_recording'] == 1} recording{/if}">
-                    {* {$channel['channel_name']} *}
                     {if $client['client_is_recording'] == 1}
                         ***
                     {/if}
@@ -46,10 +45,6 @@
                     {if $client['client_is_talker'] == 1}
                         <img src="{$__wcf->getPath()}images/teamspeak_viewer/is_talker.svg">
                     {/if}
-                    {* 
-                        Channel-Gruppen-Icons
-                        Server-Gruppen-Icons
-                    *}
                     {if !$client['client_channel_group_id']|empty}
                         <img src="{$__wcf->getPath()}images/teamspeak_viewer/{$client['client_channel_group_id']}">
                     {/if}

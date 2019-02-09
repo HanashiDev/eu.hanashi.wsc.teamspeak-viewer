@@ -6,11 +6,11 @@
 
 {include file='header'}
 
-<div class="teamspeakViewerOverview">
+<div class="section teamspeakViewerOverview">
     <section class="section">
         <h2 class="sectionTitle">Channelliste</h2>
         <ul>
-            <li>
+            <li data-type="server" data-id="">
                 <div class="channelWrapper">
                     <div class="channelCollapse">
                         <img src="{$__wcf->getPath()}images/teamspeak_viewer/server.svg">
@@ -26,10 +26,10 @@
                 </div>
             </li>
             {foreach from=$channellist item=channel}
-                <li>
+                <li data-type="channel" data-id="{$channel['cid']}">
                     <div class="channelWrapper">
                         <div class="channelCollapse">
-                            {if $channel['childs']|count > 0}
+                            {if $channel['childs']|count > 0 || (!$clientlist[$channel['cid']]|empty) && $clientlist[$channel['cid']]|count > 0}
                                 <span class="icon icon16 fa-caret-down"></span>
                             {/if}
                         </div>
@@ -52,14 +52,13 @@
                     {/if}
 
                     {if $channel['childs']|count > 0}
-                        {* {include file='__teamSpeakViewerChildChannels' __childChannels=$channel['childs'] __childPadding=20 __level=1} *}
                         {@$tsTemplate->showChannels($channel['childs'])}
                     {/if}
                 </li>
             {/foreach}
         </ul>
     </section>
-    <section class="section">
+    <section class="section" id="TeamSpeakServerInfo">
         <h2 class="sectionTitle">{$serverinfo[0]['virtualserver_name']}</h2>
         <dl>
             <dt>Server-Banner:</dt>
@@ -109,10 +108,6 @@
         <dl>
             <dt>Aktuelle Clients:</dt>
             <dd>
-                {* {assign var='clientsOnline' value=$serverinfo[0]['virtualserver_clientsonline']}
-                {if !HANASHI_TEAMSPEAK_VIEWER_SHOW_QUERY}
-                    {assign var='clientsOnline' value=$serverinfo[0]['virtualserver_clientsonline'] - 1}
-                {/if} *}
                 {$serverinfo[0]['virtualserver_clientsonline']}/{$serverinfo[0]['virtualserver_maxclients']}
             </dd>
         </dl>
@@ -122,5 +117,11 @@
         </dl>
     </section>
 </div>
+
+<script data-relocate="true">
+    require(['WoltLabSuite/Core/TeamSpeak/Viewer'], function(TeamSpeakViewer) {
+        new TeamSpeakViewer();
+    });
+</script>
 
 {include file='footer'}
