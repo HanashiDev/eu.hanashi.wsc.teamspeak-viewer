@@ -5,7 +5,7 @@
 		<item name="wcf.acp.option.hanashi_teamspeak_viewer_identity"><![CDATA[TeamSpeak-Verbindung]]></item>
 		<item name="wcf.acp.option.hanashi_teamspeak_viewer_identity.description"><![CDATA[{if LANGUAGE_USE_INFORMAL_VARIANT}Wähle{else}Wählen Sie{/if} die TeamSpeak-Verbindung für den Viewer aus.]]></item>
 		<item name="wcf.acp.option.hanashi_teamspeak_viewer_cache_interval"><![CDATA[Cache-Interval (in Sekunden)]]></item>
-		<item name="wcf.acp.option.hanashi_teamspeak_viewer_cache_interval.description"><![CDATA[Aller wie vielen Sekunden soll die aktuelle Ansicht in den Cache gespeichert werden. Steht diese Zahl auf 0, ist das Caching deaktiviert.]]></item>
+		<item name="wcf.acp.option.hanashi_teamspeak_viewer_cache_interval.description"><![CDATA[Aller wie vielen Sekunden soll die aktuelle Ansicht in den Cache gespeichert werden.]]></item>
 		<item name="wcf.acp.option.hanashi_teamspeak_viewer_show_data"><![CDATA[Verbindungsdaten anzeigen]]></item>
 		<item name="wcf.acp.option.hanashi_teamspeak_viewer_show_data.description"><![CDATA[Wenn diese Option aktiv ist, werden die Daten zum Verbinden mit dem Server im Server-Viewer angezeigt.]]></item>
 		<item name="wcf.acp.option.hanashi_teamspeak_viewer_address"><![CDATA[Abweichende Adresse]]></item>

@@ -16,9 +16,10 @@
                         <img src="{$__wcf->getPath()}images/teamspeak_viewer/server.svg">
                     </div>
                     <div class="channelName">
-                        {$serverinfo[0]['virtualserver_name']}
+                        {$serverinfo['virtualserver_name']}
                     </div>
                     <div class="channelIcons">
+                        {* TODO: Server Icon *}
                         {* {if $channel['channel_icon_id'] != 0}
                             <img src="{$__wcf->getPath()}images/teamspeak_viewer/icon_{$channel['channel_icon_id']}.png">
                         {/if} *}
@@ -68,13 +69,14 @@
         </ul>
     </section>
     <section class="section" id="TeamSpeakServerInfo">
-        <h2 class="sectionTitle">{$serverinfo[0]['virtualserver_name']}</h2>
+        <h2 class="sectionTitle">{$serverinfo['virtualserver_name']}</h2>
+        {* TODO: Hostbanner ausblenden wenn nicht vorhanden *}
         <dl>
-            <dt>Server-Banner:</dt>
+            <dt>Hostbanner:</dt>
             <dd>
                 {* TODO: Automatisch aktualisieren: virtualserver_hostbanner_gfx_interval *}
-                <a href="{$serverinfo[0]['virtualserver_hostbanner_url']}">
-                    <img src="{$serverinfo[0]['virtualserver_hostbanner_gfx_url']}" style="max-height: 300px;">
+                <a href="{$serverinfo['virtualserver_hostbanner_url']}">
+                    <img src="{$serverinfo['virtualserver_hostbanner_gfx_url']}" id="HostBanner">
                 </a>
             </dd>
         </dl>
@@ -82,53 +84,51 @@
             <dl>
                 <dt>Adresse:</dt>
                 <dd>
-                    {assign var='teamSpeakAddress' value=''}
-                    {if HANASHI_TEAMSPEAK_VIEWER_ADDRESS|empty}
-                        {capture append=teamSpeakAddress}{$teamspeakObj->hostname}{/capture}
-                    {else}
-                        {capture append=teamSpeakAddress}{HANASHI_TEAMSPEAK_VIEWER_ADDRESS}{/capture}
-                    {/if}
-                    {if HANASHI_TEAMSPEAK_VIEWER_PORT|empty}
-                        {if $teamspeakObj->virtualServerPort != 9987}
-                            {capture append=teamSpeakAddress}:{$teamspeakObj->virtualServerPort}{/capture}
-                        {/if}
-                    {else if HANASHI_TEAMSPEAK_VIEWER_PORT != 9987}
-                        {capture append=teamSpeakAddress}:{HANASHI_TEAMSPEAK_VIEWER_PORT}{/capture}
+                    {assign var='teamSpeakAddress' value=$serverinfo['hostname']}
+                    {if $serverinfo['port'] != 9987}
+                        {capture append=teamSpeakAddress}:{$serverinfo['port']}{/capture}
                     {/if}
                     {$teamSpeakAddress}
                 </dd>
             </dl>
-        {/if}
-        {if $serverinfo[0]['virtualserver_flag_password'] == 1 && HANASHI_TEAMSPEAK_VIEWER_SHOW_PASSWORD && !HANASHI_TEAMSPEAK_VIEWER_PASSWORD|empty}
-            <dl>
-                <dt>Passwort:</dt>
-                <dd>{HANASHI_TEAMSPEAK_VIEWER_PASSWORD}</dd>
-            </dl>
+            {if $serverinfo['virtualserver_flag_password'] == 1 && HANASHI_TEAMSPEAK_VIEWER_SHOW_PASSWORD && !HANASHI_TEAMSPEAK_VIEWER_PASSWORD|empty}
+                <dl>
+                    <dt>Passwort:</dt>
+                    <dd>{HANASHI_TEAMSPEAK_VIEWER_PASSWORD}</dd>
+                </dl>
+            {/if}
         {/if}
         <dl>
             <dt>Version:</dt>
-            <dd>{$serverinfo[0]['virtualserver_version']}</dd>
+            <dd>{$serverinfo['virtualserver_version']} on {$serverinfo['virtualserver_platform']}</dd>
         </dl>
         <dl>
             <dt>Online seit:</dt>
-            <dd>{@(TIME_NOW - $serverinfo[0]['virtualserver_uptime'])|time}</dd>
+            <dd>{@(TIME_NOW - $serverinfo['virtualserver_uptime'])|time}</dd>
         </dl>
         <dl>
             <dt>Aktuelle Clients:</dt>
             <dd>
-                {$serverinfo[0]['virtualserver_clientsonline']} / {$serverinfo[0]['virtualserver_maxclients']}
+                {* TODO: reservierte Clients *}
+                {$serverinfo['virtualserver_clientsonline']} / {$serverinfo['virtualserver_maxclients']}
             </dd>
         </dl>
         <dl>
             <dt>Aktuelle Channel:</dt>
-            <dd>{$serverinfo[0]['virtualserver_channelsonline']}</dd>
+            <dd>{$serverinfo['virtualserver_channelsonline']}</dd>
         </dl>
     </section>
 </div>
 
 <script data-relocate="true">
     require(['WoltLabSuite/Core/TeamSpeak/Viewer'], function(TeamSpeakViewer) {
-        new TeamSpeakViewer();
+        var options = {
+            showData: {if HANASHI_TEAMSPEAK_VIEWER_SHOW_DATA}true{else}false{/if},
+            showPassword: {if HANASHI_TEAMSPEAK_VIEWER_SHOW_PASSWORD}true{else}false{/if},
+            serverPassword: '{if HANASHI_TEAMSPEAK_VIEWER_SHOW_PASSWORD && !HANASHI_TEAMSPEAK_VIEWER_PASSWORD|empty}{HANASHI_TEAMSPEAK_VIEWER_PASSWORD}{/if}'
+        };
+
+        new TeamSpeakViewer(options);
     });
 </script>
 

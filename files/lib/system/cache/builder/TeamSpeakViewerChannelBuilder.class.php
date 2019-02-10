@@ -20,6 +20,7 @@ class TeamSpeakViewerChannelBuilder extends AbstractCacheBuilder {
         try {
             $id = $parameters[0];
             $channelinfo = TeamSpeakViewerHandler::getInstance()->channelinfo(['cid' => $id]);
+            $channel = $this->getChannelByID($id);
 
             $topic = null;
             if (!empty($channelinfo[0]['channel_topic'])) {
@@ -53,7 +54,11 @@ class TeamSpeakViewerChannelBuilder extends AbstractCacheBuilder {
                 $description = preg_replace("/\[\*\](.*)(?:<br>)/", '<li>$1</li>',$description);
             }
 
-            // TODO: client anzahl
+            // wcfDebug($channelinfo);
+            $totalClients = 0;
+            if (!empty($channel['total_clients'])) {
+                $totalClients = $channel['total_clients'];
+            }
             
             return [
                 'channel_name' => $channelinfo[0]['channel_name'],
@@ -65,6 +70,7 @@ class TeamSpeakViewerChannelBuilder extends AbstractCacheBuilder {
                 'channel_flag_default' => $channelinfo[0]['channel_flag_default'],
                 'channel_flag_password' => $channelinfo[0]['channel_flag_password'],
                 'channel_flag_maxclients_unlimited' => $channelinfo[0]['channel_flag_maxclients_unlimited'],
+                'total_clients' => $totalClients,
                 'channel_maxclients' => $channelinfo[0]['channel_maxclients'],
                 'channel_codec_is_unencrypted' => $channelinfo[0]['channel_codec_is_unencrypted'],
                 'channel_needed_talk_power' => $channelinfo[0]['channel_needed_talk_power']
@@ -72,5 +78,17 @@ class TeamSpeakViewerChannelBuilder extends AbstractCacheBuilder {
         } catch (TeamSpeakException $e) {
             return [];
         }
+    }
+
+    private function getChannelByID($channelID) {
+        $channellist = TeamSpeakViewerHandler::getInstance()->channellist();
+        $channelTmp = null;
+        foreach ($channellist as $channel) {
+            if ($channel['cid'] == $channelID) {
+                $channelTmp = $channel;
+                break;
+            }
+        }
+        return $channelTmp;
     }
 }

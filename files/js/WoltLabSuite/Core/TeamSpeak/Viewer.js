@@ -1,11 +1,19 @@
 define(['DateUtil','Ajax'], function(DateUtil, Ajax) {
     "use strict";
 
-    function TeamSpeakViewer() {
-        this._init();
+    function TeamSpeakViewer(options) {
+        this._showData = false;
+        this._showPassword = false;
+        this._serverPassword = null;
+
+        this._init(options);
     }
     TeamSpeakViewer.prototype = {
-        _init: function() {
+        _init: function(options) {
+            this._showData = options.showData;
+            this._showPassword = options.showPassword;
+            this._serverPassword = options.serverPassword;
+
             var collapseArr = document.getElementsByClassName('channelCollapse');
             for (var i = 0; i < collapseArr.length; i++) {
                 var collapseDiv = collapseArr[i];
@@ -111,8 +119,21 @@ define(['DateUtil','Ajax'], function(DateUtil, Ajax) {
             }
 
             // Audio Codec
-            // TODO: Zahl auftrennen
-            infoBox.appendChild(this._createElement('Audio Codec:', data.channel_codec));
+            var codec = 'unknown';
+            if (data.channel_codec == 0) {
+                codec = 'Speex Schmalband';
+            } else if (data.channel_codec == 1) {
+                codec = 'Speex Breitband';
+            } else if (data.channel_codec == 2) {
+                codec = 'Speex Ultra-Breitband';
+            } else if (data.channel_codec == 3) {
+                codec = 'CELT Mono';
+            } else if (data.channel_codec == 4) {
+                codec = 'Opus Voice';
+            } else if (data.channel_codec == 5) {
+                codec = 'Opus Music';
+            }
+            infoBox.appendChild(this._createElement('Audio Codec:', codec));
 
             // Eigenschaften
             var property = '';
@@ -131,7 +152,11 @@ define(['DateUtil','Ajax'], function(DateUtil, Ajax) {
             infoBox.appendChild(this._createElement('Eigenschaften:', property));
 
             // Aktuelle Clients
-            // TODO
+            var maxclients = data.channel_maxclients;
+            if (data.channel_maxclients == -1) {
+                maxclients = 'Unbegrenzt';
+            }
+            infoBox.appendChild(this._createElement('Aktuelle Clients:', data.total_clients + ' / ' + maxclients));
 
             // Moderiert
             if (data.channel_needed_talk_power > 0) {
@@ -144,6 +169,52 @@ define(['DateUtil','Ajax'], function(DateUtil, Ajax) {
                 descriptionDev.innerHTML = data.channel_description;
                 infoBox.appendChild(this._createElement('Channel Topic:', descriptionDev));
             }
+        },
+
+        _showServerInfos: function(data) {
+            var infoBox = document.getElementById('TeamSpeakServerInfo');
+            infoBox.innerHTML = '';
+
+            // Name
+            var sectionTitle = document.createElement('h2');
+            sectionTitle.classList.add('sectionTitle');
+            sectionTitle.innerText = data.virtualserver_name;
+            infoBox.appendChild(sectionTitle);
+
+            // Hostbanner
+            var hostbannerLink = document.createElement('a');
+            hostbannerLink.setAttribute('href', data.virtualserver_hostbanner_url);
+            var hostbannerImg = document.createElement('img');
+            hostbannerImg.setAttribute('src', data.virtualserver_hostbanner_gfx_url);
+            hostbannerImg.setAttribute('id', 'HostBanner');
+            hostbannerLink.appendChild(hostbannerImg);
+            infoBox.appendChild(this._createElement('Hostbanner:', hostbannerLink));
+
+            if (this._showData) {
+                // Adresse
+                var address = data.hostname;
+                if (data.port != 9987) {
+                    address = address + ':' + data.port;
+                }
+                infoBox.appendChild(this._createElement('Adresse:', address));
+
+                // Passwort
+                if (data.virtualserver_flag_password && this._showPassword && this._serverPassword != '') {
+                    infoBox.appendChild(this._createElement('Passwort:', this._serverPassword));
+                }
+            }
+
+            // Version
+            infoBox.appendChild(this._createElement('Version:', data.virtualserver_version + ' on ' + data.virtualserver_platform));
+
+            // Online seit
+            infoBox.appendChild(this._createElement('Online seit:', DateUtil.getTimeElement(new Date((TIME_NOW - data.virtualserver_uptime) * 1000))));
+
+            // Aktuelle Clients
+            infoBox.appendChild(this._createElement('Aktuelle Clients:', data.virtualserver_clientsonline + ' / ' + data.virtualserver_maxclients));
+
+            // Aktuelle Channel
+            infoBox.appendChild(this._createElement('Aktuelle Channel:', data.virtualserver_channelsonline));
         },
 
         _createGroupElement: function(groupData) {
@@ -204,8 +275,8 @@ define(['DateUtil','Ajax'], function(DateUtil, Ajax) {
                 this._showClientInfos(data.returnValues.data);
             } else if (data.returnValues.type == 'channel') {
                 this._showChannelInfos(data.returnValues.data);
-            } else {
-                console.log(data.returnValues);
+            } else if (data.returnValues.type == 'server') {
+                this._showServerInfos(data.returnValues.data);
             }
         },
 
