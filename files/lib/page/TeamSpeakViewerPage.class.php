@@ -2,6 +2,8 @@
 namespace wcf\page;
 use wcf\data\teamspeak\Teamspeak;
 use wcf\system\cache\builder\TeamSpeakViewerGeneralBuilder;
+use wcf\system\exception\TeamSpeakException;
+use wcf\system\exception\ErrorException;
 use wcf\system\teamspeak\TeamSpeakViewerHandler;
 use wcf\system\template\TeamSpeakViewerTemplateHandler;
 use wcf\system\WCF;
@@ -19,10 +21,13 @@ class TeamSpeakViewerPage extends AbstractPage {
     public function readData() {
         parent::readData();
 
-        $data = TeamSpeakViewerGeneralBuilder::getInstance()->getData();
-        $this->serverinfo = $data['serverinfo'];
-        $this->channellist = $data['channellist'];
-        $this->clientlist = $data['clientlist'];
+        try {
+            $data = TeamSpeakViewerGeneralBuilder::getInstance()->getData();
+            $this->serverinfo = $data['serverinfo'];
+            $this->channellist = $data['channellist'];
+            $this->clientlist = $data['clientlist'];
+        } catch (TeamSpeakException $e) {
+        } catch (ErrorException $e) {}
     }
 
     /**
