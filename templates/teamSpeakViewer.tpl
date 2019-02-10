@@ -19,10 +19,9 @@
                         {$serverinfo['virtualserver_name']}
                     </div>
                     <div class="channelIcons">
-                        {* TODO: Server Icon *}
-                        {* {if $channel['channel_icon_id'] != 0}
-                            <img src="{$__wcf->getPath()}images/teamspeak_viewer/icon_{$channel['channel_icon_id']}.png">
-                        {/if} *}
+                        {if $serverinfo['virtualserver_icon_id'] != 0}
+                            <img src="{$__wcf->getPath()}images/teamspeak_viewer/icon_{$serverinfo['virtualserver_icon_id']}.png">
+                        {/if}
                     </div>
                 </div>
             </li>

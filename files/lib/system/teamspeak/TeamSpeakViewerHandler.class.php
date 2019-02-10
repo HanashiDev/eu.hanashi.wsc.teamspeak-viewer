@@ -192,7 +192,7 @@ class TeamSpeakViewerHandler extends AbstractTeamSpeakHandler {
         }
     }
 
-    private function checkIcon($iconID) {
+    public function checkIcon($iconID) {
         $filename = 'icon_'.$iconID;
         if (!file_exists(WCF_DIR . 'images/teamspeak_viewer/'.$filename.'.png')) {
             $tmpFile = $this->downloadFile(0, $filename);

@@ -3,6 +3,7 @@ namespace wcf\system\cache\builder;
 use wcf\data\teamspeak\Teamspeak;
 use wcf\system\teamspeak\TeamSpeakViewerHandler;
 use wcf\system\WCF;
+use wcf\util\TeamSpeakUtil;
 
 class TeamSpeakViewerServerBuilder extends AbstractCacheBuilder {
     /**
@@ -26,6 +27,10 @@ class TeamSpeakViewerServerBuilder extends AbstractCacheBuilder {
             $serverinfo[0]['port'] = $teamspeakObj->virtualServerPort;
         } else {
             $serverinfo[0]['port'] = HANASHI_TEAMSPEAK_VIEWER_PORT;
+        }
+        if ($serverinfo[0]['virtualserver_icon_id'] != 0) {
+            $serverinfo[0]['virtualserver_icon_id'] = TeamSpeakUtil::getCorrectIconID($serverinfo[0]['virtualserver_icon_id']);
+            TeamSpeakViewerHandler::getInstance()->checkIcon($serverinfo[0]['virtualserver_icon_id']);
         }
         return $serverinfo[0];
     }
