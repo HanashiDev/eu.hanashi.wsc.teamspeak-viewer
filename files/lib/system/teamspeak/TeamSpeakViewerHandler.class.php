@@ -25,12 +25,7 @@ class TeamSpeakViewerHandler extends AbstractTeamSpeakHandler {
      */
     public function getChannels() {
         try {
-            $channellist = $this->channellist(['-icon']);
-
-            foreach ($channellist as $key => $channel) {
-                $channel['more_infos'] = TeamSpeakViewerChannelBuilder::getInstance()->getData([$channel['cid']]);
-                $channellist[$key] = $channel;
-            }
+            $channellist = $this->channellist(['-icon',  '-icon', '-flags', '-voice']);
 
             $channelListTmp = [];
             foreach ($channellist as $channel) {

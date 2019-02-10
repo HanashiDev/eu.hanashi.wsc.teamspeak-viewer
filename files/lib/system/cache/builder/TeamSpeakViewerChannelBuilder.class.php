@@ -2,8 +2,6 @@
 namespace wcf\system\cache\builder;
 use wcf\system\exception\TeamSpeakException;
 use wcf\system\teamspeak\TeamSpeakViewerHandler;
-use wcf\system\html\input\HtmlInputProcessor;
-use wcf\system\html\output\HtmlOutputProcessor;
 use wcf\system\WCF;
 use wcf\util\FileUtil;
 
@@ -81,7 +79,7 @@ class TeamSpeakViewerChannelBuilder extends AbstractCacheBuilder {
     }
 
     private function getChannelByID($channelID) {
-        $channellist = TeamSpeakViewerHandler::getInstance()->channellist();
+        $channellist = TeamSpeakViewerChannellistBuilder::getInstance()->getData();
         $channelTmp = null;
         foreach ($channellist as $channel) {
             if ($channel['cid'] == $channelID) {
