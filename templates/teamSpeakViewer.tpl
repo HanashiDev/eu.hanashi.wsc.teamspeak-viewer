@@ -70,16 +70,21 @@
         </section>
         <section class="section" id="TeamSpeakServerInfo">
             <h2 class="sectionTitle">{$serverinfo['virtualserver_name']}</h2>
-            {* TODO: Hostbanner ausblenden wenn nicht vorhanden *}
-            <dl>
-                <dt>Hostbanner:</dt>
-                <dd>
-                    {* TODO: Automatisch aktualisieren: virtualserver_hostbanner_gfx_interval *}
-                    <a href="{$serverinfo['virtualserver_hostbanner_url']}">
-                        <img src="{$serverinfo['virtualserver_hostbanner_gfx_url']}" id="HostBanner">
-                    </a>
-                </dd>
-            </dl>
+            {if !$serverinfo['virtualserver_hostbanner_gfx_url']|empty}
+                <dl>
+                    <dt>Hostbanner:</dt>
+                    <dd>
+                        {* TODO: Automatisch aktualisieren: virtualserver_hostbanner_gfx_interval *}
+                        {if $serverinfo['virtualserver_hostbanner_url']|empty}
+                            <img src="{$serverinfo['virtualserver_hostbanner_gfx_url']}" id="HostBanner">
+                        {else}
+                            <a href="{$serverinfo['virtualserver_hostbanner_url']}">
+                                <img src="{$serverinfo['virtualserver_hostbanner_gfx_url']}" id="HostBanner">
+                            </a>
+                        {/if}
+                    </dd>
+                </dl>
+            {/if}
             {if HANASHI_TEAMSPEAK_VIEWER_SHOW_DATA}
                 <dl>
                     <dt>Adresse:</dt>
@@ -109,8 +114,10 @@
             <dl>
                 <dt>Aktuelle Clients:</dt>
                 <dd>
-                    {* TODO: reservierte Clients *}
                     {$serverinfo['virtualserver_clientsonline']} / {$serverinfo['virtualserver_maxclients']}
+                    {if $serverinfo['virtualserver_reserved_slots'] > 0}
+                        (<div class="reserved">-{$serverinfo['virtualserver_reserved_slots']} reserved</div>)
+                    {/if}
                 </dd>
             </dl>
             <dl>

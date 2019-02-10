@@ -182,13 +182,22 @@ define(['DateUtil','Ajax'], function(DateUtil, Ajax) {
             infoBox.appendChild(sectionTitle);
 
             // Hostbanner
-            var hostbannerLink = document.createElement('a');
-            hostbannerLink.setAttribute('href', data.virtualserver_hostbanner_url);
-            var hostbannerImg = document.createElement('img');
-            hostbannerImg.setAttribute('src', data.virtualserver_hostbanner_gfx_url);
-            hostbannerImg.setAttribute('id', 'HostBanner');
-            hostbannerLink.appendChild(hostbannerImg);
-            infoBox.appendChild(this._createElement('Hostbanner:', hostbannerLink));
+            if (data.virtualserver_hostbanner_gfx_url != undefined) {
+                if (data.virtualserver_hostbanner_url != undefined) {
+                    var hostbannerLink = document.createElement('a');
+                    hostbannerLink.setAttribute('href', data.virtualserver_hostbanner_url);
+                    var hostbannerImg = document.createElement('img');
+                    hostbannerImg.setAttribute('src', data.virtualserver_hostbanner_gfx_url);
+                    hostbannerImg.setAttribute('id', 'HostBanner');
+                    hostbannerLink.appendChild(hostbannerImg);
+                    infoBox.appendChild(this._createElement('Hostbanner:', hostbannerLink));
+                } else {
+                    var hostbannerImg = document.createElement('img');
+                    hostbannerImg.setAttribute('src', data.virtualserver_hostbanner_gfx_url);
+                    hostbannerImg.setAttribute('id', 'HostBanner');
+                    infoBox.appendChild(this._createElement('Hostbanner:', hostbannerImg));
+                }
+            }
 
             if (this._showData) {
                 // Adresse
@@ -211,6 +220,7 @@ define(['DateUtil','Ajax'], function(DateUtil, Ajax) {
             infoBox.appendChild(this._createElement('Online seit:', DateUtil.getTimeElement(new Date((TIME_NOW - data.virtualserver_uptime) * 1000))));
 
             // Aktuelle Clients
+            // TODO reserved
             infoBox.appendChild(this._createElement('Aktuelle Clients:', data.virtualserver_clientsonline + ' / ' + data.virtualserver_maxclients));
 
             // Aktuelle Channel
