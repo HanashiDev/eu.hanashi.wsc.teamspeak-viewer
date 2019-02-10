@@ -50,10 +50,13 @@ class TeamSpeakViewerClientBuilder extends AbstractCacheBuilder {
 
             $channelGroupTmp = [];
             if (!empty($channelgrouplist[$clientinfo[0]['client_channel_group_id']])) {
-                // TODO: geerbten Channel hinzufügen
-                $channelGroupTmp[] = $channelgrouplist[$clientinfo[0]['client_channel_group_id']];
+                $channelGroup = $channelgrouplist[$clientinfo[0]['client_channel_group_id']];
+                if ($clientinfo[0]['cid'] != $clientinfo[0]['client_channel_group_inherited_channel_id']) {
+                    $inherited = TeamSpeakViewerChannelBuilder::getInstance()->getData([$clientinfo[0]['client_channel_group_inherited_channel_id']]);
+                    $channelGroup['name'] = $channelGroup['name'].' [Geerbt von: '.$inherited['channel_name'].']';
+                }
+                $channelGroupTmp[] = $channelGroup;
             }
-            // wcfDebug($channelGroupTmp);
             
             return [
                 'client_nickname' => $clientinfo[0]['client_nickname'],
