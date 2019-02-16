@@ -20,4 +20,22 @@
 		<item name="wcf.acp.option.hanashi_teamspeak_viewer_show_badges"><![CDATA[TeamSpeak-Badges anzeigen]]></item>
 		<item name="wcf.acp.option.hanashi_teamspeak_viewer_show_query"><![CDATA[Server-Querys anzeigen]]></item>
 	</category>
+	<category name="wcf.js.teamSpeakViewer">
+		<item name="wcf.js.teamSpeakViewer.versionTitle"><![CDATA[Version:]]></item>
+		<item name="wcf.js.teamSpeakViewer.versionContent"><![CDATA[{$version} auf {$platform}]]></item>
+		<item name="wcf.js.teamSpeakViewer.onlineSinceTitle"><![CDATA[Online seit:]]></item>
+		<item name="wcf.js.teamSpeakViewer.descriptionTitle"><![CDATA[Beschreibung:]]></item>
+		<item name="wcf.js.teamSpeakViewer.servergroupsTitle"><![CDATA[Server Gruppen:]]></item>
+		<item name="wcf.js.teamSpeakViewer.channelgroupTitle"><![CDATA[Channel Gruppe:]]></item>
+		<item name="wcf.js.teamSpeakViewer.avatarTitle"><![CDATA[Avatar:]]></item>
+		<item name="wcf.js.teamSpeakViewer.channelTopicTitle"><![CDATA[Channel Topic:]]></item>
+		<item name="wcf.js.teamSpeakViewer.codecUnknown"><![CDATA[Unbekannt]]></item>
+		<item name="wcf.js.teamSpeakViewer.codec0"><![CDATA[Speex Schmalband]]></item>
+		<item name="wcf.js.teamSpeakViewer.codec1"><![CDATA[Speex Breitband]]></item>
+		<item name="wcf.js.teamSpeakViewer.codec2"><![CDATA[Speex Ultra-Breitband]]></item>
+		<item name="wcf.js.teamSpeakViewer.codec3"><![CDATA[CELT Mono]]></item>
+		<item name="wcf.js.teamSpeakViewer.codec4"><![CDATA[Opus Voice]]></item>
+		<item name="wcf.js.teamSpeakViewer.codec5"><![CDATA[Opus Music]]></item>
+		<item name="wcf.js.teamSpeakViewer.codecTitle"><![CDATA[Audio Codec:]]></item>
+	</category>
 </language>

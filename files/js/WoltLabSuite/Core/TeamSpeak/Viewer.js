@@ -1,4 +1,4 @@
-define(['DateUtil','Ajax'], function(DateUtil, Ajax) {
+define(['DateUtil','Ajax','Language'], function(DateUtil, Ajax, Language) {
     "use strict";
 
     function TeamSpeakViewer(options) {
@@ -79,27 +79,27 @@ define(['DateUtil','Ajax'], function(DateUtil, Ajax) {
             infoBox.appendChild(sectionTitle);
 
             // Version
-            infoBox.appendChild(this._createElement('Version:', data.client_version + ' auf ' + data.client_platform));
+            infoBox.appendChild(this._createElement(Language.get('wcf.js.teamSpeakViewer.versionTitle'), Language.get('wcf.js.teamSpeakViewer.versionContent', {version: data.client_version, platform: data.client_platform})));
 
             // Online seit
-            infoBox.appendChild(this._createElement('Online seit:', DateUtil.getTimeElement(new Date(data.connection_connected_time))));
+            infoBox.appendChild(this._createElement(Language.get('wcf.js.teamSpeakViewer.onlineSinceTitle'), DateUtil.getTimeElement(new Date(data.connection_connected_time))));
 
             // Beschreibung
             if (data.client_description != null) {
-                infoBox.appendChild(this._createElement('Beschreibung:', data.client_description));
+                infoBox.appendChild(this._createElement(Language.get('wcf.js.teamSpeakViewer.descriptionTitle'), data.client_description));
             }
 
             // Servergruppen
-            infoBox.appendChild(this._createElement('Server Gruppen:', this._createGroupElement(data.client_servergroups)));
+            infoBox.appendChild(this._createElement(Language.get('wcf.js.teamSpeakViewer.servergroupsTitle'), this._createGroupElement(data.client_servergroups)));
 
             // Channelgruppen
-            infoBox.appendChild(this._createElement('Channel Gruppe:', this._createGroupElement(data.client_channel_group_id)));
+            infoBox.appendChild(this._createElement(Language.get('wcf.js.teamSpeakViewer.channelgroupTitle'), this._createGroupElement(data.client_channel_group_id)));
 
             // avatar
             if (data.avatar) {
                 var avatarImg = document.createElement('img');
                 avatarImg.setAttribute('src', WCF_PATH + 'images/teamspeak_viewer/avatar/avatar_' + data.client_base64HashClientUID + '.png');
-                infoBox.appendChild(this._createElement('Avatar:', avatarImg));
+                infoBox.appendChild(this._createElement(Language.get('wcf.js.teamSpeakViewer.avatarTitle'), avatarImg));
             }
         },
 
@@ -115,25 +115,15 @@ define(['DateUtil','Ajax'], function(DateUtil, Ajax) {
 
             // Channel Topic
             if (data.channel_topic != null) {
-                infoBox.appendChild(this._createElement('Channel Topic:', data.channel_topic));
+                infoBox.appendChild(this._createElement(Language.get('wcf.js.teamSpeakViewer.channelTopicTitle'), data.channel_topic));
             }
 
             // Audio Codec
-            var codec = 'unknown';
-            if (data.channel_codec == 0) {
-                codec = 'Speex Schmalband';
-            } else if (data.channel_codec == 1) {
-                codec = 'Speex Breitband';
-            } else if (data.channel_codec == 2) {
-                codec = 'Speex Ultra-Breitband';
-            } else if (data.channel_codec == 3) {
-                codec = 'CELT Mono';
-            } else if (data.channel_codec == 4) {
-                codec = 'Opus Voice';
-            } else if (data.channel_codec == 5) {
-                codec = 'Opus Music';
+            var codec = Language.get('wcf.js.teamSpeakViewer.codecUnknown');
+            if (data.channel_codec >= 0 && data.channel_codec <= 5) {
+                codec = Language.get('wcf.js.teamSpeakViewer.codec' + data.channel_codec);
             }
-            infoBox.appendChild(this._createElement('Audio Codec:', codec));
+            infoBox.appendChild(this._createElement(Language.get('wcf.js.teamSpeakViewer.codecTitle'), codec));
 
             // Eigenschaften
             var property = '';

@@ -128,7 +128,26 @@
     </div>
 
     <script data-relocate="true">
-        require(['WoltLabSuite/Core/TeamSpeak/Viewer'], function(TeamSpeakViewer) {
+        require(['Language', 'WoltLabSuite/Core/TeamSpeak/Viewer'], function(Language, TeamSpeakViewer) {
+            Language.addObject({
+                'wcf.js.teamSpeakViewer.version': '{lang}wcf.js.teamSpeakViewer.version{/lang}',
+                'wcf.js.teamSpeakViewer.versionContent': '{capture assign=versionContent}{lang __literal=true}wcf.js.teamSpeakViewer.versionContent{/lang}{/capture}{@$versionContent|encodeJS}',
+                'wcf.js.teamSpeakViewer.onlineSinceTitle': '{lang}wcf.js.teamSpeakViewer.onlineSinceTitle{/lang}',
+                'wcf.js.teamSpeakViewer.descriptionTitle': '{lang}wcf.js.teamSpeakViewer.descriptionTitle{/lang}',
+                'wcf.js.teamSpeakViewer.servergroupsTitle': '{lang}wcf.js.teamSpeakViewer.servergroupsTitle{/lang}',
+                'wcf.js.teamSpeakViewer.channelgroupTitle': '{lang}wcf.js.teamSpeakViewer.channelgroupTitle{/lang}',
+                'wcf.js.teamSpeakViewer.avatarTitle': '{lang}wcf.js.teamSpeakViewer.avatarTitle{/lang}',
+                'wcf.js.teamSpeakViewer.channelTopicTitle': '{lang}wcf.js.teamSpeakViewer.channelTopicTitle{/lang}',
+                'wcf.js.teamSpeakViewer.codecUnknown': '{lang}wcf.js.teamSpeakViewer.codecUnknown{/lang}',
+                'wcf.js.teamSpeakViewer.codec0': '{lang}wcf.js.teamSpeakViewer.codec0{/lang}',
+                'wcf.js.teamSpeakViewer.codec1': '{lang}wcf.js.teamSpeakViewer.codec1{/lang}',
+                'wcf.js.teamSpeakViewer.codec2': '{lang}wcf.js.teamSpeakViewer.codec2{/lang}',
+                'wcf.js.teamSpeakViewer.codec3': '{lang}wcf.js.teamSpeakViewer.codec3{/lang}',
+                'wcf.js.teamSpeakViewer.codec4': '{lang}wcf.js.teamSpeakViewer.codec4{/lang}',
+                'wcf.js.teamSpeakViewer.codec5': '{lang}wcf.js.teamSpeakViewer.codec5{/lang}',
+                'wcf.js.teamSpeakViewer.codecTitle': '{lang}wcf.js.teamSpeakViewer.codecTitle{/lang}'
+            });
+
             var options = {
                 showData: {if HANASHI_TEAMSPEAK_VIEWER_SHOW_DATA}true{else}false{/if},
                 showPassword: {if HANASHI_TEAMSPEAK_VIEWER_SHOW_PASSWORD}true{else}false{/if},
