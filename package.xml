@@ -6,7 +6,7 @@
         <packagedescription><![CDATA[Viewer for TeamSpeak.]]></packagedescription>
         <packagedescription language="de"><![CDATA[Viewer für TeamSpeak.]]></packagedescription>
         <version>1.0.0 Alpha 1</version>
-        <date>2019-02-07</date>
+        <date>2019-02-17</date>
     </packageinformation>
 
     <authorinformation>
@@ -32,15 +32,12 @@
         <instruction type="file" />
 		
 		<!-- templates -->
-		<!-- <instruction type="acpTemplate" /> -->
 		<instruction type="template" />
 		
 		<!-- language -->
         <instruction type="language"/>
 		
 		<!-- config -->
-        <!-- <instruction type="acpMenu" /> -->
-        <!-- <instruction type="sql" /> -->
         <instruction type="userGroupOption" />
         <instruction type="option" />
         <instruction type="page" />
