@@ -38,10 +38,6 @@ class TeamSpeakViewerPage extends AbstractPage {
     public function assignVariables() {
         parent::assignVariables();
 
-        // wcfDebug($this->serverinfo);
-        // preg_match('/^(\[([a-z\*])[a-zA-Z0-9\*]?spacer([0-9a-zA-Z]+)?\])(.*)$/', '[c0spacer0]Huhu_', $matches);
-        // wcfDebug($matches);
-
         WCF::getTPL()->assign([
             'serverinfo' => $this->serverinfo,
             'channellist' => $this->channellist,
