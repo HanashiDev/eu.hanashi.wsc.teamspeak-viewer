@@ -22,8 +22,6 @@ class TeamSpeakViewerClientBuilder extends AbstractCacheBuilder {
             $channelgrouplist = TeamSpeakViewerHandler::getInstance()->getChannelgroups();
             if (count($clientinfo) == 0) return [];
 
-            // wcfDebug($servergrouplist);
-
             $avatar = false;
             if (!empty($clientinfo[0]['client_flag_avatar'])) {
                 $this->downloadAvatar($clientinfo[0]['client_base64HashClientUID']);
@@ -53,6 +51,7 @@ class TeamSpeakViewerClientBuilder extends AbstractCacheBuilder {
                 $channelGroup = $channelgrouplist[$clientinfo[0]['client_channel_group_id']];
                 if ($clientinfo[0]['cid'] != $clientinfo[0]['client_channel_group_inherited_channel_id']) {
                     $inherited = TeamSpeakViewerChannelBuilder::getInstance()->getData([$clientinfo[0]['client_channel_group_inherited_channel_id']]);
+                    // TODO: Sprachvariable
                     $channelGroup['name'] = $channelGroup['name'].' [Geerbt von: '.$inherited['channel_name'].']';
                 }
                 $channelGroupTmp[] = $channelGroup;

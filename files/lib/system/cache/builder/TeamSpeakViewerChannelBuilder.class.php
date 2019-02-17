@@ -52,7 +52,6 @@ class TeamSpeakViewerChannelBuilder extends AbstractCacheBuilder {
                 $description = preg_replace("/\[\*\](.*)(?:<br>)/", '<li>$1</li>',$description);
             }
 
-            // wcfDebug($channelinfo);
             $totalClients = 0;
             if (!empty($channel['total_clients'])) {
                 $totalClients = $channel['total_clients'];
