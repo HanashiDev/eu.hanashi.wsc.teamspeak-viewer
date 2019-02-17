@@ -20,6 +20,9 @@
 		<item name="wcf.acp.option.hanashi_teamspeak_viewer_show_badges"><![CDATA[TeamSpeak-Badges anzeigen]]></item>
 		<item name="wcf.acp.option.hanashi_teamspeak_viewer_show_query"><![CDATA[Server-Querys anzeigen]]></item>
 	</category>
+	<category name="wcf.acp.group">
+		<item name="wcf.acp.group.option.user.teamspeak-viewer.canView"><![CDATA[Kann TeamSpeak-Viewer sehen]]></item>
+	</category>
 	<category name="wcf.js.teamSpeakViewer">
 		<item name="wcf.js.teamSpeakViewer.versionTitle"><![CDATA[Version:]]></item>
 		<item name="wcf.js.teamSpeakViewer.versionContent"><![CDATA[{$version} auf {$platform}]]></item>

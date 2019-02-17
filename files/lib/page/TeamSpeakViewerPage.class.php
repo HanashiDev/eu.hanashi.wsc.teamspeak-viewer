@@ -9,6 +9,8 @@ use wcf\system\template\TeamSpeakViewerTemplateHandler;
 use wcf\system\WCF;
 
 class TeamSpeakViewerPage extends AbstractPage {
+    public $neededPermissions = ['user.teamspeak-viewer.canView'];
+
     protected $serverinfo;
 
     protected $channellist;

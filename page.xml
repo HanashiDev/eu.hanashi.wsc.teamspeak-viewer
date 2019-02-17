@@ -5,6 +5,7 @@
 			<pageType>system</pageType>
 			<controller>wcf\page\TeamSpeakViewerPage</controller>
 			<options>hanashi_teamspeak_viewer_identity</options>
+			<permissions>user.teamspeak-viewer.canView</permissions>
 			<name language="de"><![CDATA[TeamSpeak-Viewer]]></name>
 			<name language="en"><![CDATA[TeamSpeak-Viewer]]></name>
 			
