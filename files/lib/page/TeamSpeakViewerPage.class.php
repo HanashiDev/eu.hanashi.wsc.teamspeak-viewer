@@ -29,7 +29,14 @@ class TeamSpeakViewerPage extends AbstractPage {
             $this->channellist = $data['channellist'];
             $this->clientlist = $data['clientlist'];
         } catch (TeamSpeakException $e) {
-        } catch (ErrorException $e) {}
+            if (ENABLE_DEBUG_MODE) {
+				throw $e;
+			}
+        } catch (ErrorException $e) {
+            if (ENABLE_DEBUG_MODE) {
+				throw $e;
+			}
+        }
     }
 
     /**

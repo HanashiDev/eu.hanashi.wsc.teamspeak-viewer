@@ -73,6 +73,9 @@ class TeamSpeakViewerChannelBuilder extends AbstractCacheBuilder {
                 'channel_needed_talk_power' => $channelinfo[0]['channel_needed_talk_power']
             ];
         } catch (TeamSpeakException $e) {
+            if (ENABLE_DEBUG_MODE) {
+				throw $e;
+			}
             return [];
         }
     }

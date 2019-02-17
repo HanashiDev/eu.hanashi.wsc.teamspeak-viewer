@@ -82,6 +82,9 @@ class TeamSpeakViewerClientBuilder extends AbstractCacheBuilder {
                 'client_description' => $client_description
             ];
         } catch (TeamSpeakException $e) {
+            if (ENABLE_DEBUG_MODE) {
+				throw $e;
+			}
             return [];
         }
     }

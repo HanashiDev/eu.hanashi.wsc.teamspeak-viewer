@@ -64,6 +64,9 @@ class TeamSpeakViewerHandler extends AbstractTeamSpeakHandler {
 
             return $channelListTmp;
         } catch (TeamSpeakException $e) {
+            if (ENABLE_DEBUG_MODE) {
+				throw $e;
+			}
             return [];
         }
     }
@@ -96,6 +99,9 @@ class TeamSpeakViewerHandler extends AbstractTeamSpeakHandler {
             
             return $servergrouplistTmp;
         } catch (TeamSpeakException $e) {
+            if (ENABLE_DEBUG_MODE) {
+				throw $e;
+			}
             return [];
         }
     }
@@ -128,6 +134,9 @@ class TeamSpeakViewerHandler extends AbstractTeamSpeakHandler {
             
             return $channelgrouplistTmp;
         } catch (TeamSpeakException $e) {
+            if (ENABLE_DEBUG_MODE) {
+				throw $e;
+			}
             return [];
         }
     }
@@ -183,6 +192,9 @@ class TeamSpeakViewerHandler extends AbstractTeamSpeakHandler {
 
             return $clientListTmp;
         } catch (TeamSpeakException $e) {
+            if (ENABLE_DEBUG_MODE) {
+				throw $e;
+			}
             return [];
         }
     }
