@@ -40,5 +40,25 @@
 		<item name="wcf.js.teamSpeakViewer.codec4"><![CDATA[Opus Voice]]></item>
 		<item name="wcf.js.teamSpeakViewer.codec5"><![CDATA[Opus Music]]></item>
 		<item name="wcf.js.teamSpeakViewer.codecTitle"><![CDATA[Audio Codec:]]></item>
+		<item name="wcf.js.teamSpeakViewer.flag_permanent"><![CDATA[Permanent]]></item>
+		<item name="wcf.js.teamSpeakViewer.flag_semi_permanent"><![CDATA[Semi-Permanent]]></item>
+		<item name="wcf.js.teamSpeakViewer.flag_temporary"><![CDATA[Temporär]]></item>
+		<item name="wcf.js.teamSpeakViewer.flag_default"><![CDATA[Standard]]></item>
+		<item name="wcf.js.teamSpeakViewer.flag_password"><![CDATA[Passwort]]></item>
+		<item name="wcf.js.teamSpeakViewer.settingsTitle"><![CDATA[Eigenschaften:]]></item>
+		<item name="wcf.js.teamSpeakViewer.unlimited"><![CDATA[Unbegrenzt]]></item>
+		<item name="wcf.js.teamSpeakViewer.actualClientsTitle"><![CDATA[Aktuelle Clients:]]></item>
+		<item name="wcf.js.teamSpeakViewer.moderatedTitle"><![CDATA[Moderiert:]]></item>
+		<item name="wcf.js.teamSpeakViewer.yes"><![CDATA[Ja]]></item>
+		<item name="wcf.js.teamSpeakViewer.hostbannerTitle"><![CDATA[Hostbanner:]]></item>
+		<item name="wcf.js.teamSpeakViewer.addressTitle"><![CDATA[Adresse:]]></item>
+		<item name="wcf.js.teamSpeakViewer.passwordTitle"><![CDATA[Passwort:]]></item>
+		<item name="wcf.js.teamSpeakViewer.versionTitle"><![CDATA[Version:]]></item>
+		<item name="wcf.js.teamSpeakViewer.actualChannelsTitle"><![CDATA[Aktuelle Channel:]]></item>
+	</category>
+	<category name="wcf.page.teamSpeakViewer">
+		<item name="wcf.page.teamSpeakViewer.connectNow"><![CDATA[Jetzt verbinden]]></item>
+		<item name="wcf.page.teamSpeakViewer.channellist"><![CDATA[Channelliste]]></item>
+		<item name="wcf.page.teamSpeakViewer.notReachable"><![CDATA[Der TeamSpeak-Server ist aktuell nicht erreichbar.]]></item>
 	</category>
 </language>

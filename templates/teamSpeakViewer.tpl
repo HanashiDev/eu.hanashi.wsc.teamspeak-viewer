@@ -1,6 +1,6 @@
 {if HANASHI_TEAMSPEAK_VIEWER_SHOW_CONNECT_BUTTON && HANASHI_TEAMSPEAK_VIEWER_SHOW_DATA && !$serverinfo|empty}
     {capture append='contentHeaderNavigation'}
-        <li><a href="{$teamspeakLink}" class="button"><span class="icon icon16 fa-server"></span> <span>Jetzt verbinden</span></a></li>
+        <li><a href="{$teamspeakLink}" class="button"><span class="icon icon16 fa-server"></span> <span>{lang}wcf.page.teamSpeakViewer.connectNow{/lang}</span></a></li>
     {/capture}
 {/if}
 
@@ -9,7 +9,7 @@
 {if !$serverinfo|empty}
     <div class="section teamspeakViewerOverview">
         <section class="section">
-            <h2 class="sectionTitle">Channelliste</h2>
+            <h2 class="sectionTitle">{lang}wcf.page.teamSpeakViewer.channellist{/lang}</h2>
             <ul>
                 <li data-type="server" data-id="">
                     <div class="channelWrapper">
@@ -72,7 +72,7 @@
             <h2 class="sectionTitle">{$serverinfo['virtualserver_name']}</h2>
             {if !$serverinfo['virtualserver_hostbanner_gfx_url']|empty}
                 <dl>
-                    <dt>Hostbanner:</dt>
+                    <dt>{lang}wcf.js.teamSpeakViewer.hostbannerTitle{/lang}</dt>
                     <dd>
                         {* TODO: Automatisch aktualisieren: virtualserver_hostbanner_gfx_interval *}
                         {if $serverinfo['virtualserver_hostbanner_url']|empty}
@@ -87,7 +87,7 @@
             {/if}
             {if HANASHI_TEAMSPEAK_VIEWER_SHOW_DATA}
                 <dl>
-                    <dt>Adresse:</dt>
+                    <dt>{lang}wcf.js.teamSpeakViewer.addressTitle{/lang}</dt>
                     <dd>
                         {assign var='teamSpeakAddress' value=$serverinfo['hostname']}
                         {if $serverinfo['port'] != 9987}
@@ -98,21 +98,21 @@
                 </dl>
                 {if $serverinfo['virtualserver_flag_password'] == 1 && HANASHI_TEAMSPEAK_VIEWER_SHOW_PASSWORD && !HANASHI_TEAMSPEAK_VIEWER_PASSWORD|empty}
                     <dl>
-                        <dt>Passwort:</dt>
+                        <dt>{lang}wcf.js.teamSpeakViewer.passwordTitle{/lang}</dt>
                         <dd>{HANASHI_TEAMSPEAK_VIEWER_PASSWORD}</dd>
                     </dl>
                 {/if}
             {/if}
             <dl>
-                <dt>Version:</dt>
+                <dt>{lang}wcf.js.teamSpeakViewer.versionTitle{/lang}</dt>
                 <dd>{$serverinfo['virtualserver_version']} on {$serverinfo['virtualserver_platform']}</dd>
             </dl>
             <dl>
-                <dt>Online seit:</dt>
+                <dt>{lang}wcf.js.teamSpeakViewer.onlineSinceTitle{/lang}</dt>
                 <dd>{@(TIME_NOW - $serverinfo['virtualserver_uptime'])|time}</dd>
             </dl>
             <dl>
-                <dt>Aktuelle Clients:</dt>
+                <dt>{lang}wcf.js.teamSpeakViewer.actualClientsTitle{/lang}</dt>
                 <dd>
                     {$serverinfo['virtualserver_clientsonline']} / {$serverinfo['virtualserver_maxclients']}
                     {if $serverinfo['virtualserver_reserved_slots'] > 0}
@@ -121,7 +121,7 @@
                 </dd>
             </dl>
             <dl>
-                <dt>Aktuelle Channel:</dt>
+                <dt>{lang}wcf.js.teamSpeakViewer.actualChannelsTitle{/lang}</dt>
                 <dd>{$serverinfo['virtualserver_channelsonline']}</dd>
             </dl>
         </section>
@@ -145,7 +145,22 @@
                 'wcf.js.teamSpeakViewer.codec3': '{lang}wcf.js.teamSpeakViewer.codec3{/lang}',
                 'wcf.js.teamSpeakViewer.codec4': '{lang}wcf.js.teamSpeakViewer.codec4{/lang}',
                 'wcf.js.teamSpeakViewer.codec5': '{lang}wcf.js.teamSpeakViewer.codec5{/lang}',
-                'wcf.js.teamSpeakViewer.codecTitle': '{lang}wcf.js.teamSpeakViewer.codecTitle{/lang}'
+                'wcf.js.teamSpeakViewer.codecTitle': '{lang}wcf.js.teamSpeakViewer.codecTitle{/lang}',
+                'wcf.js.teamSpeakViewer.flag_permanent': '{lang}wcf.js.teamSpeakViewer.flag_permanent{/lang}',
+                'wcf.js.teamSpeakViewer.flag_semi_permanent': '{lang}wcf.js.teamSpeakViewer.flag_semi_permanent{/lang}',
+                'wcf.js.teamSpeakViewer.flag_temporary': '{lang}wcf.js.teamSpeakViewer.flag_temporary{/lang}',
+                'wcf.js.teamSpeakViewer.flag_default': '{lang}wcf.js.teamSpeakViewer.flag_default{/lang}',
+                'wcf.js.teamSpeakViewer.flag_password': '{lang}wcf.js.teamSpeakViewer.flag_password{/lang}',
+                'wcf.js.teamSpeakViewer.settingsTitle': '{lang}wcf.js.teamSpeakViewer.settingsTitle{/lang}',
+                'wcf.js.teamSpeakViewer.unlimited': '{lang}wcf.js.teamSpeakViewer.unlimited{/lang}',
+                'wcf.js.teamSpeakViewer.actualClientsTitle': '{lang}wcf.js.teamSpeakViewer.actualClientsTitle{/lang}',
+                'wcf.js.teamSpeakViewer.moderatedTitle': '{lang}wcf.js.teamSpeakViewer.moderatedTitle{/lang}',
+                'wcf.js.teamSpeakViewer.yes': '{lang}wcf.js.teamSpeakViewer.yes{/lang}',
+                'wcf.js.teamSpeakViewer.hostbannerTitle': '{lang}wcf.js.teamSpeakViewer.hostbannerTitle{/lang}',
+                'wcf.js.teamSpeakViewer.addressTitle': '{lang}wcf.js.teamSpeakViewer.addressTitle{/lang}',
+                'wcf.js.teamSpeakViewer.passwordTitle': '{lang}wcf.js.teamSpeakViewer.passwordTitle{/lang}',
+                'wcf.js.teamSpeakViewer.versionTitle': '{lang}wcf.js.teamSpeakViewer.versionTitle{/lang}',
+                'wcf.js.teamSpeakViewer.actualChannelsTitle': '{lang}wcf.js.teamSpeakViewer.actualChannelsTitle{/lang}'
             });
 
             var options = {
@@ -158,7 +173,7 @@
         });
     </script>
 {else}
-    <p class="info">Der TeamSpeak-Server ist aktuell nicht erreichbar.</p>
+    <p class="info">{lang}wcf.page.teamSpeakViewer.notReachable{/lang}</p>
 {/if}
 
 {include file='footer'}

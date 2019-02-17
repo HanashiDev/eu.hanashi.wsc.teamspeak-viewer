@@ -128,36 +128,36 @@ define(['DateUtil','Ajax','Language'], function(DateUtil, Ajax, Language) {
             // Eigenschaften
             var property = '';
             if (data.channel_flag_permanent == 1) {
-                property = 'Permanent';
+                property = Language.get('wcf.js.teamSpeakViewer.flag_permanent');
             } else if (data.channel_flag_semi_permanent == 1) {
-                property = 'Semi-Permanent';
+                property = Language.get('wcf.js.teamSpeakViewer.flag_semi_permanent');
             } else {
-                property = 'Temporär';
+                property = Language.get('wcf.js.teamSpeakViewer.flag_temporary');
             }
             if (data.channel_flag_default == 1) {
-                property = property + ', Standard';
+                property = property + ', ' + Language.get('wcf.js.teamSpeakViewer.flag_default');
             } else if (data.channel_flag_password == 1) {
-                property = property + ', Passwort';
+                property = property + ', ' + Language.get('wcf.js.teamSpeakViewer.flag_password');
             }
-            infoBox.appendChild(this._createElement('Eigenschaften:', property));
+            infoBox.appendChild(this._createElement(Language.get('wcf.js.teamSpeakViewer.settingsTitle'), property));
 
             // Aktuelle Clients
             var maxclients = data.channel_maxclients;
             if (data.channel_maxclients == -1) {
-                maxclients = 'Unbegrenzt';
+                maxclients = Language.get('wcf.js.teamSpeakViewer.unlimited');
             }
-            infoBox.appendChild(this._createElement('Aktuelle Clients:', data.total_clients + ' / ' + maxclients));
+            infoBox.appendChild(this._createElement(Language.get('wcf.js.teamSpeakViewer.actualClientsTitle'), data.total_clients + ' / ' + maxclients));
 
             // Moderiert
             if (data.channel_needed_talk_power > 0) {
-                infoBox.appendChild(this._createElement('Moderiert:', 'Ja'));
+                infoBox.appendChild(this._createElement(Language.get('wcf.js.teamSpeakViewer.moderatedTitle'), Language.get('wcf.js.teamSpeakViewer.yes')));
             }
 
             // Beschreibung
             if (data.channel_description != null) {
                 var descriptionDev = document.createElement('div');
                 descriptionDev.innerHTML = data.channel_description;
-                infoBox.appendChild(this._createElement('Beschreibung:', descriptionDev));
+                infoBox.appendChild(this._createElement(Language.get('wcf.js.teamSpeakViewer.descriptionTitle'), descriptionDev));
             }
         },
 
@@ -180,12 +180,12 @@ define(['DateUtil','Ajax','Language'], function(DateUtil, Ajax, Language) {
                     hostbannerImg.setAttribute('src', data.virtualserver_hostbanner_gfx_url);
                     hostbannerImg.setAttribute('id', 'HostBanner');
                     hostbannerLink.appendChild(hostbannerImg);
-                    infoBox.appendChild(this._createElement('Hostbanner:', hostbannerLink));
+                    infoBox.appendChild(this._createElement(Language.get('wcf.js.teamSpeakViewer.hostbannerTitle'), hostbannerLink));
                 } else {
                     var hostbannerImg = document.createElement('img');
                     hostbannerImg.setAttribute('src', data.virtualserver_hostbanner_gfx_url);
                     hostbannerImg.setAttribute('id', 'HostBanner');
-                    infoBox.appendChild(this._createElement('Hostbanner:', hostbannerImg));
+                    infoBox.appendChild(this._createElement(Language.get('wcf.js.teamSpeakViewer.hostbannerTitle'), hostbannerImg));
                 }
             }
 
@@ -195,26 +195,26 @@ define(['DateUtil','Ajax','Language'], function(DateUtil, Ajax, Language) {
                 if (data.port != 9987) {
                     address = address + ':' + data.port;
                 }
-                infoBox.appendChild(this._createElement('Adresse:', address));
+                infoBox.appendChild(this._createElement(Language.get('wcf.js.teamSpeakViewer.addressTitle'), address));
 
                 // Passwort
                 if (data.virtualserver_flag_password && this._showPassword && this._serverPassword != '') {
-                    infoBox.appendChild(this._createElement('Passwort:', this._serverPassword));
+                    infoBox.appendChild(this._createElement(Language.get('wcf.js.teamSpeakViewer.passwordTitle'), this._serverPassword));
                 }
             }
 
             // Version
-            infoBox.appendChild(this._createElement('Version:', data.virtualserver_version + ' on ' + data.virtualserver_platform));
+            infoBox.appendChild(this._createElement(Language.get('wcf.js.teamSpeakViewer.versionTitle'), data.virtualserver_version + ' on ' + data.virtualserver_platform));
 
             // Online seit
-            infoBox.appendChild(this._createElement('Online seit:', DateUtil.getTimeElement(new Date((TIME_NOW - data.virtualserver_uptime) * 1000))));
+            infoBox.appendChild(this._createElement(Language.get('wcf.js.teamSpeakViewer.onlineSinceTitle'), DateUtil.getTimeElement(new Date((TIME_NOW - data.virtualserver_uptime) * 1000))));
 
             // Aktuelle Clients
             // TODO reserved
-            infoBox.appendChild(this._createElement('Aktuelle Clients:', data.virtualserver_clientsonline + ' / ' + data.virtualserver_maxclients));
+            infoBox.appendChild(this._createElement(Language.get('wcf.js.teamSpeakViewer.actualClientsTitle'), data.virtualserver_clientsonline + ' / ' + data.virtualserver_maxclients));
 
             // Aktuelle Channel
-            infoBox.appendChild(this._createElement('Aktuelle Channel:', data.virtualserver_channelsonline));
+            infoBox.appendChild(this._createElement(Language.get('wcf.js.teamSpeakViewer.actualChannelsTitle'), data.virtualserver_channelsonline));
         },
 
         _createGroupElement: function(groupData) {
@@ -270,7 +270,6 @@ define(['DateUtil','Ajax','Language'], function(DateUtil, Ajax, Language) {
         },
 
         _ajaxSuccess: function(data) {
-            // this._showMessages(data.returnValues);
             if (data.returnValues.type == 'client') {
                 this._showClientInfos(data.returnValues.data);
             } else if (data.returnValues.type == 'channel') {
@@ -281,7 +280,6 @@ define(['DateUtil','Ajax','Language'], function(DateUtil, Ajax, Language) {
         },
 
         _ajaxFailure: function() {
-            console.log('fehler');
         }
     }
 
