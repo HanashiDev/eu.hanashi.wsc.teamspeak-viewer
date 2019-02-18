@@ -227,7 +227,7 @@ define(['DateUtil','Ajax','Language'], function(DateUtil, Ajax, Language) {
                 // Icon
                 var groupIconDiv = document.createElement('div');
                 groupIconDiv.classList.add('channelSubscription');
-                if (group.iconid != null) {
+                if (group.iconid != null && group.iconid != 0) {
                     var groupIcon = document.createElement('img');
                     groupIcon.setAttribute('src', WCF_PATH + 'images/teamspeak_viewer/' + group.iconid);
                     groupIconDiv.appendChild(groupIcon);

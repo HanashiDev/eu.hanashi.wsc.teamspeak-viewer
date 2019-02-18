@@ -1,18 +1,8 @@
 @media screen and (min-width: 769px), print {
     .teamspeakViewerOverview {
-		// columns: auto;
-		// column-gap: 40px;
-        // column-rule: 1px solid #4179ad;
-        // column-width: 450px;
-		// margin-top: 40px;
 		display:flex;
 
 		.section {
-			// break-inside: avoid;
-			// margin-bottom: 20px;
-			// margin-top: 0;
-			// overflow: hidden;
-			// page-break-inside: avoid;
 			width: 50%;
 			margin-top: 0;
 		}
@@ -97,4 +87,5 @@
 
 #HostBanner {
 	max-height: 300px;
+	max-width: 100%;
 }

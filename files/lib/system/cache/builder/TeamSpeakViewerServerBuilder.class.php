@@ -30,7 +30,9 @@ class TeamSpeakViewerServerBuilder extends AbstractCacheBuilder {
         }
         if ($serverinfo[0]['virtualserver_icon_id'] != 0) {
             $serverinfo[0]['virtualserver_icon_id'] = TeamSpeakUtil::getCorrectIconID($serverinfo[0]['virtualserver_icon_id']);
-            TeamSpeakViewerHandler::getInstance()->checkIcon($serverinfo[0]['virtualserver_icon_id']);
+            if (!TeamSpeakViewerHandler::getInstance()->checkIcon($serverinfo[0]['virtualserver_icon_id'])) {
+                $serverinfo[0]['virtualserver_icon_id'] = 0;
+            }
         }
         return $serverinfo[0];
     }

@@ -24,8 +24,9 @@ class TeamSpeakViewerClientBuilder extends AbstractCacheBuilder {
 
             $avatar = false;
             if (!empty($clientinfo[0]['client_flag_avatar'])) {
-                $this->downloadAvatar($clientinfo[0]['client_base64HashClientUID']);
-                $avatar = true;
+                if ($this->downloadAvatar($clientinfo[0]['client_base64HashClientUID'])) {
+                    $avatar = true;
+                }
             }
 
             $request = '';
@@ -90,8 +91,13 @@ class TeamSpeakViewerClientBuilder extends AbstractCacheBuilder {
     }
 
     protected function downloadAvatar($clientUID) {
-        $tmpFile = TeamSpeakViewerHandler::getInstance()->downloadFile(0, 'avatar_'.$clientUID);
-        FileUtil::makePath(WCF_DIR.'images/teamspeak_viewer/avatar/');
-        rename($tmpFile, WCF_DIR . 'images/teamspeak_viewer/avatar/avatar_'.$clientUID.'.png');
+        try {
+            $tmpFile = TeamSpeakViewerHandler::getInstance()->downloadFile(0, 'avatar_'.$clientUID);
+            FileUtil::makePath(WCF_DIR.'images/teamspeak_viewer/avatar/');
+            rename($tmpFile, WCF_DIR . 'images/teamspeak_viewer/avatar/avatar_'.$clientUID.'.png');
+        } catch (TeamSpeakException $e) {
+            return false;
+        }
+        return true;
     }
 }

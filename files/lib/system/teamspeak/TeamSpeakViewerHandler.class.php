@@ -54,7 +54,9 @@ class TeamSpeakViewerHandler extends AbstractTeamSpeakHandler {
                     // Icon checken
                     if ($channel['channel_icon_id'] != 0) {
                         $channel['channel_icon_id'] = TeamSpeakUtil::getCorrectIconID($channel['channel_icon_id']);
-                        $this->checkIcon($channel['channel_icon_id']);
+                        if (!$this->checkIcon($channel['channel_icon_id'])) {
+                            $channel['channel_icon_id'] = 0;
+                        }
                     }
 
                     $channelListTmp[$channel['cid']] = $channel;
@@ -91,8 +93,11 @@ class TeamSpeakViewerHandler extends AbstractTeamSpeakHandler {
                     $servergroup['iconid'] = 'group_600.svg';
                 } else {
                     $servergroup['iconid'] = TeamSpeakUtil::getCorrectIconID($servergroup['iconid']);
-                    $this->checkIcon($servergroup['iconid']);
-                    $servergroup['iconid'] = 'icon_'.$servergroup['iconid'].'.png';
+                    if ($this->checkIcon($servergroup['iconid'])) {
+                        $servergroup['iconid'] = 'icon_'.$servergroup['iconid'].'.png';
+                    } else {
+                        $servergroup['iconid'] = 0;
+                    }
                 }
                 $servergrouplistTmp[$servergroup['sgid']] = $servergroup;
             }
@@ -126,8 +131,11 @@ class TeamSpeakViewerHandler extends AbstractTeamSpeakHandler {
                     $channelgroup['iconid'] = 'group_600.svg';
                 } else {
                     $channelgroup['iconid'] = TeamSpeakUtil::getCorrectIconID($channelgroup['iconid']);
-                    $this->checkIcon($channelgroup['iconid']);
-                    $channelgroup['iconid'] = 'icon_'.$channelgroup['iconid'].'.png';
+                    if ($this->checkIcon($channelgroup['iconid'])) {
+                        $channelgroup['iconid'] = 'icon_'.$channelgroup['iconid'].'.png';
+                    } else {
+                        $channelgroup['iconid'] = 0;
+                    }
                 }
                 $channelgrouplistTmp[$channelgroup['cgid']] = $channelgroup;
             }
@@ -158,18 +166,29 @@ class TeamSpeakViewerHandler extends AbstractTeamSpeakHandler {
             foreach ($clientlist as $client) {
                 if (!HANASHI_TEAMSPEAK_VIEWER_SHOW_QUERY && $client['client_type'] == 1) continue;
                 if (!empty($client['client_badges'])) {
-                    $badgesArr = explode('=', $client['client_badges']);
-                    if (!empty($badgesArr[1])) {
-                        $badges = explode(',', $badgesArr[1]);
-                        $badgesTmp = [];
-                        foreach ($badges as $badge) {
-                            $badgeTmp = $this->badge($badge);
-                            if (empty($badgeTmp)) continue;
-                            $badgesTmp[] = $badgeTmp;
-                        }
-                        $client['client_badges'] = $badgesTmp;
-                        // $client['client_badges'] = explode(',', $badgesArr[1]);
-                    }
+					$clientBadgesTmp = explode(':', $client['client_badges']);
+					foreach ($clientBadgesTmp as $clientBadgeTmp) {
+						$badgesArr = explode('=', $clientBadgeTmp);
+						if (strtolower($badgesArr[0]) == 'overwolf') {
+							if ($badgesArr[1] == '1') {
+								$client['overwolf'] = true;
+							}
+						} else if ($badgesArr[0] == 'badges') {
+							if (!empty($badgesArr[1])) {
+								$badges = explode(',', $badgesArr[1]);
+								$badgesTmp = [];
+								foreach ($badges as $badge) {
+									$badgeTmp = $this->badge($badge);
+									if (empty($badgeTmp)) continue;
+									$badgesTmp[] = $badgeTmp;
+								}
+								$client['client_badges'] = $badgesTmp;
+							}
+						}
+					}
+					if (!is_array($client['client_badges'])) {
+						$client['client_badges'] = [];
+					}
                 }
 
                 $servergroupIDs = explode(',', $client['client_servergroups']);
@@ -202,9 +221,14 @@ class TeamSpeakViewerHandler extends AbstractTeamSpeakHandler {
     public function checkIcon($iconID) {
         $filename = 'icon_'.$iconID;
         if (!file_exists(WCF_DIR . 'images/teamspeak_viewer/'.$filename.'.png')) {
-            $tmpFile = $this->downloadFile(0, $filename);
-            rename($tmpFile, WCF_DIR . 'images/teamspeak_viewer/'.$filename.'.png');
+            try {
+                $tmpFile = $this->downloadFile(0, $filename);
+                rename($tmpFile, WCF_DIR . 'images/teamspeak_viewer/'.$filename.'.png');
+            } catch (TeamSpeakException $e) {
+                return false;
+            }
         }
+        return true;
     }
 
     public function badge($guid) {
