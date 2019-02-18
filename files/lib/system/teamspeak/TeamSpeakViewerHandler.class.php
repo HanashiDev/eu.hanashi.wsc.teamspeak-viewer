@@ -252,7 +252,8 @@ class TeamSpeakViewerHandler extends AbstractTeamSpeakHandler {
             '4eef1ecf-a0ea-423d-bfd0-496543a00305' => 'gamescom_2018.svg',
             '24512806-f886-4440-b579-9e26e4219ef6' => 'gamescom_2018_played.svg',
             'b9c7d6ad-5b99-40fb-988c-1d02ab6cc130' => 'met_tim.svg',
-            '6b187e83-873b-46b0-b2c2-a31af15e76a4' => 'cap_red.svg'
+            '6b187e83-873b-46b0-b2c2-a31af15e76a4' => 'cap_red.svg',
+            '4b0fd4f5-d456-4294-973d-853a1db5c7d8' => 'Valentines_Badge.svg'
         ];
         if (empty($badges[$guid])) return;
         return $badges[$guid];
