@@ -27,7 +27,7 @@ class TeamSpeakViewerChannelBuilder extends AbstractCacheBuilder {
 
             $description = null;
             if (!empty($channelinfo[0]['channel_description'])) {
-                $description = nl2br($channelinfo[0]['channel_description']);
+                $description = nl2br(htmlspecialchars($channelinfo[0]['channel_description']));
                 $description = str_replace('<br />', '<br>', $description);
                 $description = preg_replace('/\[b\](.*)\[\/b\]/iU', '<b>$1</b>', $description);
                 $description = preg_replace('/\[i\](.*)\[\/i\]/iU', '<i>$1</i>', $description);
