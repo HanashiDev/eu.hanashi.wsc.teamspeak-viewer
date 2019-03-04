@@ -25,10 +25,22 @@ class TeamSpeakViewerHandler extends AbstractTeamSpeakHandler {
      */
     public function getChannels() {
         try {
-            $channellist = $this->channellist(['-icon',  '-icon', '-flags', '-voice']);
+            $channellist = $this->channellist(['-icon', '-flags', '-voice']);
+
+            $channelListIconTmp = [];
+            foreach ($channellist as $channel) {
+                // Icon checken
+                if ($channel['channel_icon_id'] != 0) {
+                    $channel['channel_icon_id'] = TeamSpeakUtil::getCorrectIconID($channel['channel_icon_id']);
+                    if (!$this->checkIcon($channel['channel_icon_id'])) {
+                        $channel['channel_icon_id'] = 0;
+                    }
+                }
+                $channelListIconTmp[] = $channel;
+            }
 
             $channelListTmp = [];
-            foreach ($channellist as $channel) {
+            foreach ($channelListIconTmp as $channel) {
                 if ($channel['pid'] == 0) {
                     // Berechnen ob Channel spacer ist
                     if (preg_match('/^(\[([a-z\*])[a-zA-Z0-9\*]?spacer([0-9a-zA-Z]+)?\])(.*)$/', $channel['channel_name'], $matches)) {
@@ -51,16 +63,8 @@ class TeamSpeakViewerHandler extends AbstractTeamSpeakHandler {
                         $channel['is_spacer'] = false;
                     }
 
-                    // Icon checken
-                    if ($channel['channel_icon_id'] != 0) {
-                        $channel['channel_icon_id'] = TeamSpeakUtil::getCorrectIconID($channel['channel_icon_id']);
-                        if (!$this->checkIcon($channel['channel_icon_id'])) {
-                            $channel['channel_icon_id'] = 0;
-                        }
-                    }
-
                     $channelListTmp[$channel['cid']] = $channel;
-                    $channelListTmp[$channel['cid']]['childs'] = TeamSpeakUtil::getChilds($channellist, 'pid', $channel['cid']);
+                    $channelListTmp[$channel['cid']]['childs'] = TeamSpeakUtil::getChilds($channelListIconTmp, 'pid', $channel['cid']);
                 }
             }
 
