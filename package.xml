@@ -5,8 +5,8 @@
         <packagename language="de"><![CDATA[TeamSpeak-Viewer]]></packagename>
         <packagedescription><![CDATA[Viewer for TeamSpeak.]]></packagedescription>
         <packagedescription language="de"><![CDATA[Viewer für TeamSpeak.]]></packagedescription>
-        <version>1.0.0 Alpha 7</version>
-        <date>2019-03-04</date>
+        <version>1.0.0 Alpha 8</version>
+        <date>2019-03-13</date>
     </packageinformation>
 
     <authorinformation>
@@ -20,7 +20,7 @@
 
     <requiredpackages>
         <requiredpackage minversion="3.1.7">com.woltlab.wcf</requiredpackage>
-        <requiredpackage minversion="1.5.1">eu.hanashi.wsc.teamspeak-api</requiredpackage>
+        <requiredpackage minversion="1.5.2">eu.hanashi.wsc.teamspeak-api</requiredpackage>
     </requiredpackages>
 	
 	<excludedpackages>
@@ -36,15 +36,33 @@
 		
 		<!-- language -->
         <instruction type="language"/>
+
+        <!-- listener -->
+        <instruction type="templateListener" />
 		
 		<!-- config -->
+        <instruction type="coreObject" />
         <instruction type="userGroupOption" />
         <instruction type="option" />
         <instruction type="page" />
         <instruction type="menuItem" />
     </instructions>
-	<instructions type="update" fromversion="1.0.0 Alpha 6">
+	<instructions type="update" fromversion="1.0.0 Alpha 7">
 		<!-- files -->
         <instruction type="file" />
+		
+		<!-- templates -->
+		<instruction type="template" />
+		
+		<!-- language -->
+        <instruction type="language"/>
+
+        <!-- listener -->
+        <instruction type="templateListener" />
+		
+		<!-- config -->
+        <instruction type="coreObject" />
+        <instruction type="userGroupOption" />
+        <instruction type="option" />
 	</instructions>
 </package>

@@ -4,6 +4,7 @@ use wcf\data\AbstractDatabaseObjectAction;
 use wcf\system\cache\builder\TeamSpeakViewerClientBuilder;
 use wcf\system\cache\builder\TeamSpeakViewerChannelBuilder;
 use wcf\system\cache\builder\TeamSpeakViewerServerBuilder;
+use wcf\system\teamspeak\TeamSpeakViewerMenuHandler;
 use wcf\system\WCF;
 
 class TeamspeakViewerAction extends AbstractDatabaseObjectAction {
@@ -43,5 +44,18 @@ class TeamspeakViewerAction extends AbstractDatabaseObjectAction {
         }
 
         return [];
+    }
+
+    public function validateGetClientlist() {}
+
+    public function getClientlist() {
+        WCF::getTPL()->assign([
+            'clientlist' => TeamSpeakViewerMenuHandler::getInstance()->getClientlist()
+        ]);
+
+        return [
+			'template' => WCF::getTPL()->fetch('teamSpeakClientlistUserPanel'),
+			'totalCount' => TeamSpeakViewerMenuHandler::getInstance()->getClientCount()
+		];
     }
 }

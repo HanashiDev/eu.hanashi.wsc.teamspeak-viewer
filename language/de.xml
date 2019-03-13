@@ -18,6 +18,7 @@
 		<item name="wcf.acp.option.hanashi_teamspeak_viewer_password.description"><![CDATA[Das Serverpasswort des ausgewählten Servers. Wird dieses Feld freigelassen, wird kein Serverpasswort angezeigt.]]></item>
 		<item name="wcf.acp.option.hanashi_teamspeak_viewer_show_connect_button"><![CDATA["Jetzt verbinden"-Button anzeigen]]></item>
 		<item name="wcf.acp.option.hanashi_teamspeak_viewer_show_badges"><![CDATA[TeamSpeak-Badges anzeigen]]></item>
+		<item name="wcf.acp.option.hanashi_teamspeak_viewer_show_menu"><![CDATA[Zeige TeamSpeak-Viewer im Menü]]></item>
 		<item name="wcf.acp.option.hanashi_teamspeak_viewer_show_query"><![CDATA[Server-Querys anzeigen]]></item>
 	</category>
 	<category name="wcf.acp.group">
@@ -57,6 +58,8 @@
 		<item name="wcf.js.teamSpeakViewer.actualChannelsTitle"><![CDATA[Aktuelle Channel:]]></item>
 	</category>
 	<category name="wcf.page.teamSpeakViewer">
+		<item name="wcf.page.teamSpeakViewer.title"><![CDATA[TeamSpeak-Viewer]]></item>
+		<item name="wcf.page.teamSpeakViewer.noUsers"><![CDATA[Es sind keine Benutzer online.]]></item>
 		<item name="wcf.page.teamSpeakViewer.connectNow"><![CDATA[Jetzt verbinden]]></item>
 		<item name="wcf.page.teamSpeakViewer.channellist"><![CDATA[Channelliste]]></item>
 		<item name="wcf.page.teamSpeakViewer.notReachable"><![CDATA[Der TeamSpeak-Server ist aktuell nicht erreichbar.]]></item>

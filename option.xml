@@ -48,6 +48,11 @@
                 <optiontype>boolean</optiontype>
 				<defaultvalue>1</defaultvalue>
             </option>
+            <option name="hanashi_teamspeak_viewer_show_menu">
+                <categoryname>teamspeak_viewer</categoryname>
+                <optiontype>boolean</optiontype>
+				<defaultvalue>1</defaultvalue>
+            </option>
             <option name="hanashi_teamspeak_viewer_show_query">
                 <categoryname>teamspeak_viewer</categoryname>
                 <optiontype>boolean</optiontype>
