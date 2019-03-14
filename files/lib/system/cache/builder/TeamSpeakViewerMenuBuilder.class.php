@@ -17,8 +17,6 @@ class TeamSpeakViewerMenuBuilder extends AbstractCacheBuilder {
     protected function rebuild(array $parameters) {
         try {
             $clientlist = TeamSpeakViewerHandler::getInstance()->clientlist(['-away', '-voice', '-groups']);
-            $clientlist = TeamSpeakUtil::arraySort($clientlist, 'client_nickname');
-
             $channellist = TeamSpeakViewerHandler::getInstance()->channellist();
             $channellistTmp = [];
             foreach ($channellist as $channel) {
@@ -34,6 +32,17 @@ class TeamSpeakViewerMenuBuilder extends AbstractCacheBuilder {
                     $client['channel'] = $channellistTmp[$client['cid']]['channel_name'];
                 }
                 $clientlistTmp[] = $client;
+            }
+
+            $sort = [];
+            foreach($clientlistTmp as $k => $v) {
+                $sort['client_nickname'][$k] = $v['client_nickname'];
+                $sort['channel'][$k] = $v['channel'];
+            }
+            if (HANASHI_TEAMSPEAK_VIEWER_MENU_GROUPED) {
+                array_multisort($sort['channel'], SORT_ASC, $sort['client_nickname'], SORT_ASC, $clientlistTmp);
+            } else {
+                array_multisort($sort['client_nickname'], SORT_ASC, $clientlistTmp);
             }
 
             return $clientlistTmp;

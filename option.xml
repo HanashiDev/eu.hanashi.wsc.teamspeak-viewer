@@ -52,6 +52,12 @@
                 <categoryname>teamspeak_viewer</categoryname>
                 <optiontype>boolean</optiontype>
 				<defaultvalue>1</defaultvalue>
+                <enableoptions>hanashi_teamspeak_viewer_menu_grouped</enableoptions>
+            </option>
+            <option name="hanashi_teamspeak_viewer_menu_grouped">
+                <categoryname>teamspeak_viewer</categoryname>
+                <optiontype>boolean</optiontype>
+				<defaultvalue>1</defaultvalue>
             </option>
             <option name="hanashi_teamspeak_viewer_show_query">
                 <categoryname>teamspeak_viewer</categoryname>

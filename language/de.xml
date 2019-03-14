@@ -19,6 +19,8 @@
 		<item name="wcf.acp.option.hanashi_teamspeak_viewer_show_connect_button"><![CDATA["Jetzt verbinden"-Button anzeigen]]></item>
 		<item name="wcf.acp.option.hanashi_teamspeak_viewer_show_badges"><![CDATA[TeamSpeak-Badges anzeigen]]></item>
 		<item name="wcf.acp.option.hanashi_teamspeak_viewer_show_menu"><![CDATA[Zeige TeamSpeak-Viewer im Menü]]></item>
+		<item name="wcf.acp.option.hanashi_teamspeak_viewer_menu_grouped"><![CDATA[Menü gruppiert sortieren]]></item>
+		<item name="wcf.acp.option.hanashi_teamspeak_viewer_menu_grouped.description"><![CDATA[Sortiert die Benutzer im Menü erst nach Channelname und danach nach Benutzername. Ansonsten nur nach Benutzername.]]></item>
 		<item name="wcf.acp.option.hanashi_teamspeak_viewer_show_query"><![CDATA[Server-Querys anzeigen]]></item>
 	</category>
 	<category name="wcf.acp.group">
