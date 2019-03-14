@@ -8,4 +8,5 @@
         <span class="badge badgeUpdate">{#$__wcf->getTeamSpeakViewerMenuHandler()->getClientCount()}</span>
     </a>
 </li>
+{assign var='showTeamSpeakViewerCopyright' value=true}
 {/if}

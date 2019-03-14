@@ -5,8 +5,8 @@
         <packagename language="de"><![CDATA[TeamSpeak-Viewer]]></packagename>
         <packagedescription><![CDATA[Viewer for TeamSpeak.]]></packagedescription>
         <packagedescription language="de"><![CDATA[Viewer für TeamSpeak.]]></packagedescription>
-        <version>1.0.0 Alpha 8</version>
-        <date>2019-03-13</date>
+        <version>1.0.0 Alpha 9</version>
+        <date>2019-03-14</date>
     </packageinformation>
 
     <authorinformation>
@@ -47,7 +47,7 @@
         <instruction type="page" />
         <instruction type="menuItem" />
     </instructions>
-	<instructions type="update" fromversion="1.0.0 Alpha 7">
+	<instructions type="update" fromversion="1.0.0 Alpha 8">
 		<!-- files -->
         <instruction type="file" />
 		
@@ -59,10 +59,5 @@
 
         <!-- listener -->
         <instruction type="templateListener" />
-		
-		<!-- config -->
-        <instruction type="coreObject" />
-        <instruction type="userGroupOption" />
-        <instruction type="option" />
 	</instructions>
 </package>

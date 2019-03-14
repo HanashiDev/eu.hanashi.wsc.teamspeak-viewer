@@ -64,4 +64,7 @@
 		<item name="wcf.page.teamSpeakViewer.channellist"><![CDATA[Channelliste]]></item>
 		<item name="wcf.page.teamSpeakViewer.notReachable"><![CDATA[Der TeamSpeak-Server ist aktuell nicht erreichbar.]]></item>
 	</category>
+	<category name="wcf.copyright">
+		<item name="wcf.copyright.teamSpeakViewer"><![CDATA[TeamSpeak-Viewer, entwickelt von Hanashi]]></item>
+	</category>
 </language>

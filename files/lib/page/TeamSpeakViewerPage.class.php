@@ -50,7 +50,8 @@ class TeamSpeakViewerPage extends AbstractPage {
             'channellist' => $this->channellist,
             'clientlist' => $this->clientlist,
             'teamspeakLink' => $this->getTeamspeakLink(),
-            'tsTemplate' => new TeamSpeakViewerTemplateHandler()
+            'tsTemplate' => new TeamSpeakViewerTemplateHandler(),
+            'showTeamSpeakViewerCopyright' => true
         ]);
     }
 

@@ -19,4 +19,5 @@
         });
     </script>
 </li>
+{assign var='showTeamSpeakViewerCopyright' value=true}
 {/if}
