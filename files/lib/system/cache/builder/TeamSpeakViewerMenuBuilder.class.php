@@ -15,6 +15,8 @@ class TeamSpeakViewerMenuBuilder extends AbstractCacheBuilder {
 	 * @inheritDoc
 	 */
     protected function rebuild(array $parameters) {
+        if (!HANASHI_TEAMSPEAK_VIEWER_IDENTITY) return [];
+
         try {
             $clientlist = TeamSpeakViewerHandler::getInstance()->clientlist(['-away', '-voice', '-groups']);
             $channellist = TeamSpeakViewerHandler::getInstance()->channellist();

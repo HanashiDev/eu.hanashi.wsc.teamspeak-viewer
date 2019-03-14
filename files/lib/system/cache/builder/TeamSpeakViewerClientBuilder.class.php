@@ -57,6 +57,11 @@ class TeamSpeakViewerClientBuilder extends AbstractCacheBuilder {
                 }
                 $channelGroupTmp[] = $channelGroup;
             }
+
+            $client_base64HashClientUID = null;
+            if (isset($clientinfo[0]['client_base64HashClientUID'])) {
+                $client_base64HashClientUID = $clientinfo[0]['client_base64HashClientUID'];
+            }
             
             return [
                 'client_nickname' => $clientinfo[0]['client_nickname'],
@@ -68,7 +73,7 @@ class TeamSpeakViewerClientBuilder extends AbstractCacheBuilder {
                 'cid' => $clientinfo[0]['cid'],
                 'client_channel_group_inherited_channel_id' => $clientinfo[0]['client_channel_group_inherited_channel_id'],
                 'avatar' => $avatar,
-                'client_base64HashClientUID' => $clientinfo[0]['client_base64HashClientUID'],
+                'client_base64HashClientUID' => $client_base64HashClientUID,
                 'client_input_muted' => $clientinfo[0]['client_input_muted'],
                 'client_output_muted' => $clientinfo[0]['client_output_muted'],
                 'client_outputonly_muted' => $clientinfo[0]['client_outputonly_muted'],
