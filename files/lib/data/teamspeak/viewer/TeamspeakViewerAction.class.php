@@ -11,7 +11,7 @@ class TeamspeakViewerAction extends AbstractDatabaseObjectAction {
     /**
 	 * @inheritDoc
 	 */
-    protected $allowGuestAccess = ['showData'];
+    protected $allowGuestAccess = ['showData', 'getClientlist'];
 
     public function validateShowData() {}
 
