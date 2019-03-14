@@ -60,6 +60,7 @@
 	<category name="wcf.page.teamSpeakViewer">
 		<item name="wcf.page.teamSpeakViewer.title"><![CDATA[TeamSpeak-Viewer]]></item>
 		<item name="wcf.page.teamSpeakViewer.noUsers"><![CDATA[Es sind keine Benutzer online.]]></item>
+		<item name="wcf.page.teamSpeakViewer.usersOnline"><![CDATA[Benutzer online]]></item>
 		<item name="wcf.page.teamSpeakViewer.connectNow"><![CDATA[Jetzt verbinden]]></item>
 		<item name="wcf.page.teamSpeakViewer.channellist"><![CDATA[Channelliste]]></item>
 		<item name="wcf.page.teamSpeakViewer.notReachable"><![CDATA[Der TeamSpeak-Server ist aktuell nicht erreichbar.]]></item>

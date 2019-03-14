@@ -12,6 +12,8 @@
     <script data-relocate="true">
         $(function() {
             new WCF.User.Panel.Teamspeak({
+                usersOnlineCount: {#$__wcf->getTeamSpeakViewerMenuHandler()->getClientCount()},
+                usersOnline: '{lang}wcf.page.teamSpeakViewer.usersOnline{/lang}',
                 noItems: '{lang}wcf.page.teamSpeakViewer.noUsers{/lang}',
                 showAllLink: '{link controller='TeamSpeakViewer'}{/link}',
                 title: '{lang}wcf.page.teamSpeakViewer.title{/lang}'

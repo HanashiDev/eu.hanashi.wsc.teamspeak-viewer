@@ -18,6 +18,16 @@ WCF.User.Panel.Teamspeak = WCF.User.Panel.Abstract.extend({
 			}).bind(this));
 		}).bind(this));
 	},
+
+	/**
+	 * @see	WCF.User.Panel.Abstract._initDropdown()
+	 */
+	_initDropdown: function() {
+		var $dropdown = this._super();
+		$('<li>' + this._options.usersOnlineCount + ' ' + this._options.usersOnline + '</li>').appendTo($dropdown.getLinkList());
+		
+		return $dropdown;
+	},
 	
 	/**
 	 * @see	WCF.User.Panel.Abstract._load()
