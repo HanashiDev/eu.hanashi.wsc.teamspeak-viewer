@@ -36,10 +36,12 @@ class TeamSpeakViewerMenuBuilder extends AbstractCacheBuilder {
                 $clientlistTmp[] = $client;
             }
 
-            if (HANASHI_TEAMSPEAK_VIEWER_MENU_GROUPED) {
-                array_multisort(array_column($clientlistTmp, 'channel'), SORT_ASC, array_column($clientlistTmp, 'client_nickname'), SORT_ASC, $clientlistTmp);
-            } else {
-                array_multisort(array_column($clientlistTmp, 'client_nickname'), SORT_ASC, $clientlistTmp);
+            if (count($clientlistTmp) > 0) {
+                if (HANASHI_TEAMSPEAK_VIEWER_MENU_GROUPED) {
+                    array_multisort(array_column($clientlistTmp, 'channel'), SORT_ASC, array_column($clientlistTmp, 'client_nickname'), SORT_ASC, $clientlistTmp);
+                } else {
+                    array_multisort(array_column($clientlistTmp, 'client_nickname'), SORT_ASC, $clientlistTmp);
+                }
             }
 
             return $clientlistTmp;
