@@ -5,13 +5,13 @@
         <packagename language="de"><![CDATA[TeamSpeak-Viewer]]></packagename>
         <packagedescription><![CDATA[Viewer for TeamSpeak.]]></packagedescription>
         <packagedescription language="de"><![CDATA[Viewer für TeamSpeak.]]></packagedescription>
-        <version>1.0.0 Alpha 13</version>
-        <date>2019-03-16</date>
+        <version>1.0.0 Alpha 14</version>
+        <date>2019-04-15</date>
     </packageinformation>
 
     <authorinformation>
         <author><![CDATA[Hanashi]]></author>
-        <authorurl><![CDATA[https://hanashi.eu/]]></authorurl>
+        <authorurl><![CDATA[https://hanashi.dev/]]></authorurl>
     </authorinformation>
 	
 	<compatibility>
@@ -47,8 +47,11 @@
         <instruction type="page" />
         <instruction type="menuItem" />
     </instructions>
-	<instructions type="update" fromversion="1.0.0 Alpha 12">
+	<instructions type="update" fromversion="1.0.0 Alpha 13">
 		<!-- files -->
         <instruction type="file" />
+		
+		<!-- templates -->
+		<instruction type="template" />
 	</instructions>
 </package>
