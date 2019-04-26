@@ -50,5 +50,8 @@
 	<instructions type="update" fromversion="1.0.0 Alpha 14">
 		<!-- files -->
         <instruction type="file" />
+		
+		<!-- templates -->
+		<instruction type="template" />
 	</instructions>
 </package>
