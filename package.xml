@@ -5,8 +5,8 @@
         <packagename language="de"><![CDATA[TeamSpeak-Viewer]]></packagename>
         <packagedescription><![CDATA[Viewer for TeamSpeak.]]></packagedescription>
         <packagedescription language="de"><![CDATA[Viewer für TeamSpeak.]]></packagedescription>
-        <version>1.0.0</version>
-        <date>2019-04-26</date>
+        <version>1.0.1</version>
+        <date>2019-12-10</date>
     </packageinformation>
 
     <authorinformation>
@@ -19,13 +19,9 @@
 	</compatibility>
 
     <requiredpackages>
-        <requiredpackage minversion="3.1.7">com.woltlab.wcf</requiredpackage>
-        <requiredpackage minversion="1.5.2">eu.hanashi.wsc.teamspeak-api</requiredpackage>
+        <requiredpackage minversion="3.1.0">com.woltlab.wcf</requiredpackage>
+        <requiredpackage minversion="1.5.4">eu.hanashi.wsc.teamspeak-api</requiredpackage>
     </requiredpackages>
-	
-	<excludedpackages>
-        <excludedpackage version="3.2.0 Alpha 1">com.woltlab.wcf</excludedpackage>
-    </excludedpackages>
 
     <instructions type="install">
 		<!-- files -->
@@ -47,11 +43,8 @@
         <instruction type="page" />
         <instruction type="menuItem" />
     </instructions>
-	<instructions type="update" fromversion="1.0.0 Alpha 14">
+	<instructions type="update" fromversion="1.0.0">
 		<!-- files -->
         <instruction type="file" />
-		
-		<!-- templates -->
-		<instruction type="template" />
 	</instructions>
 </package>
