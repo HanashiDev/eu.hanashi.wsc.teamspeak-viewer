@@ -9,7 +9,7 @@
                         {/if}
                     </div>
                     <div class="channelSubscription">
-                        <img src="{$__wcf->getPath()}images/teamspeak_viewer/channel_unsubscribed.svg">
+                        <img src="{$__wcf->getPath()}images/teamspeak_viewer/channel_unsubscribed.svg?v={@LAST_UPDATE_TIME}">
                     </div>
                     <div class="channelName">
                         {assign var='linkParameters' value='1'}
@@ -17,16 +17,16 @@
                     </div>
                     <div class="channelIcons">
                         {if $channel['channel_flag_default'] == 1}
-                            <img src="{$__wcf->getPath()}images/teamspeak_viewer/default.svg">
+                            <img src="{$__wcf->getPath()}images/teamspeak_viewer/default.svg?v={@LAST_UPDATE_TIME}">
                         {/if}
                         {if $channel['channel_flag_password'] == 1}
-                            <img src="{$__wcf->getPath()}images/teamspeak_viewer/register.svg">
+                            <img src="{$__wcf->getPath()}images/teamspeak_viewer/register.svg?v={@LAST_UPDATE_TIME}">
                         {/if}
                         {if $channel['channel_needed_talk_power'] > 0}
-                            <img src="{$__wcf->getPath()}images/teamspeak_viewer/moderated.svg">
+                            <img src="{$__wcf->getPath()}images/teamspeak_viewer/moderated.svg?v={@LAST_UPDATE_TIME}">
                         {/if}
                         {if $channel['channel_icon_id'] != 0}
-                            <img src="{$__wcf->getPath()}images/teamspeak_viewer/icon_{$channel['channel_icon_id']}.png">
+                            <img src="{$__wcf->getPath()}images/teamspeak_viewer/icon_{$channel['channel_icon_id']}.png?v={@LAST_UPDATE_TIME}">
                         {/if}
                     </div>
                 </div>
