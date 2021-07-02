@@ -5,23 +5,23 @@
         <packagename language="de"><![CDATA[TeamSpeak-Viewer]]></packagename>
         <packagedescription><![CDATA[Viewer for TeamSpeak.]]></packagedescription>
         <packagedescription language="de"><![CDATA[Viewer für TeamSpeak.]]></packagedescription>
-        <version>1.0.1</version>
-        <date>2019-12-10</date>
+        <version>1.0.2</version>
+        <date>2020-07-02</date>
     </packageinformation>
 
     <authorinformation>
-        <author><![CDATA[Hanashi]]></author>
+        <author><![CDATA[Hanashi Development]]></author>
         <authorurl><![CDATA[https://hanashi.dev/]]></authorurl>
     </authorinformation>
-	
-	<compatibility>
-		<api version="2018" />
-	</compatibility>
 
     <requiredpackages>
         <requiredpackage minversion="3.1.0">com.woltlab.wcf</requiredpackage>
         <requiredpackage minversion="1.5.4">eu.hanashi.wsc.teamspeak-api</requiredpackage>
     </requiredpackages>
+
+    <excludedpackages>
+        <excludedpackage version="6.0.0 Alpha 1">com.woltlab.wcf</excludedpackage>
+    </excludedpackages>
 
     <instructions type="install">
 		<!-- files -->
@@ -43,8 +43,8 @@
         <instruction type="page" />
         <instruction type="menuItem" />
     </instructions>
-	<instructions type="update" fromversion="1.0.0">
-		<!-- files -->
-        <instruction type="file" />
+	<instructions type="update" fromversion="1.0.1">
+		<!-- templates -->
+		<instruction type="template" />
 	</instructions>
 </package>
