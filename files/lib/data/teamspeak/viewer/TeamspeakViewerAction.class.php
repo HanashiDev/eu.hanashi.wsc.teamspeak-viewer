@@ -1,5 +1,7 @@
 <?php
+
 namespace wcf\data\teamspeak\viewer;
+
 use wcf\data\AbstractDatabaseObjectAction;
 use wcf\system\cache\builder\TeamSpeakViewerClientBuilder;
 use wcf\system\cache\builder\TeamSpeakViewerChannelBuilder;
@@ -7,36 +9,46 @@ use wcf\system\cache\builder\TeamSpeakViewerServerBuilder;
 use wcf\system\teamspeak\TeamSpeakViewerMenuHandler;
 use wcf\system\WCF;
 
-class TeamspeakViewerAction extends AbstractDatabaseObjectAction {
+class TeamspeakViewerAction extends AbstractDatabaseObjectAction
+{
     /**
-	 * @inheritDoc
-	 */
+     * @inheritDoc
+     */
     protected $allowGuestAccess = ['showData', 'getClientlist'];
 
-    public function validateShowData() {}
+    public function validateShowData()
+    {
+    }
 
-    public function showData() {
+    public function showData()
+    {
         $data = $this->parameters['data'];
         $type = $this->parameters['data']['type'];
         $id = $this->parameters['data']['id'];
-        
+
         if ($type == 'client') {
             $data = TeamSpeakViewerClientBuilder::getInstance()->getData([$id]);
-            if (count($data) == 0) return ['type' => 'unknown'];
+            if (count($data) == 0) {
+                return ['type' => 'unknown'];
+            }
             return [
                 'type' => 'client',
                 'data' => $data
             ];
-        } else if ($type == 'channel') {
+        } elseif ($type == 'channel') {
             $data = TeamSpeakViewerChannelBuilder::getInstance()->getData([$id]);
-            if (count($data) == 0) return ['type' => 'unknown'];
+            if (count($data) == 0) {
+                return ['type' => 'unknown'];
+            }
             return [
                 'type' => 'channel',
                 'data' => $data
             ];
-        } else if ($type == 'server') {
+        } elseif ($type == 'server') {
             $data = TeamSpeakViewerServerBuilder::getInstance()->getData();
-            if (count($data) == 0) return ['type' => 'unknown'];
+            if (count($data) == 0) {
+                return ['type' => 'unknown'];
+            }
             return [
                 'type' => 'server',
                 'data' => $data
@@ -46,16 +58,19 @@ class TeamspeakViewerAction extends AbstractDatabaseObjectAction {
         return [];
     }
 
-    public function validateGetClientlist() {}
+    public function validateGetClientlist()
+    {
+    }
 
-    public function getClientlist() {
+    public function getClientlist()
+    {
         WCF::getTPL()->assign([
             'clientlist' => TeamSpeakViewerMenuHandler::getInstance()->getClientlist()
         ]);
 
         return [
-			'template' => WCF::getTPL()->fetch('teamSpeakClientlistUserPanel'),
-			'totalCount' => TeamSpeakViewerMenuHandler::getInstance()->getClientCount()
-		];
+            'template' => WCF::getTPL()->fetch('teamSpeakClientlistUserPanel'),
+            'totalCount' => TeamSpeakViewerMenuHandler::getInstance()->getClientCount()
+        ];
     }
 }

@@ -1,21 +1,27 @@
 <?php
+
 namespace wcf\system\cache\builder;
+
 use wcf\system\exception\TeamSpeakException;
 use wcf\system\teamspeak\TeamSpeakViewerHandler;
 use wcf\system\WCF;
 use wcf\util\TeamSpeakUtil;
 
-class TeamSpeakViewerMenuBuilder extends AbstractCacheBuilder {
+class TeamSpeakViewerMenuBuilder extends AbstractCacheBuilder
+{
     /**
      * @inheritDoc
      */
     protected $maxLifetime = HANASHI_TEAMSPEAK_VIEWER_CACHE_INTERVAL;
-    
+
     /**
-	 * @inheritDoc
-	 */
-    protected function rebuild(array $parameters) {
-        if (!HANASHI_TEAMSPEAK_VIEWER_IDENTITY) return [];
+     * @inheritDoc
+     */
+    protected function rebuild(array $parameters)
+    {
+        if (!HANASHI_TEAMSPEAK_VIEWER_IDENTITY) {
+            return [];
+        }
 
         try {
             $clientlist = TeamSpeakViewerHandler::getInstance()->clientlist(['-away', '-voice', '-groups']);
@@ -27,7 +33,9 @@ class TeamSpeakViewerMenuBuilder extends AbstractCacheBuilder {
 
             $clientlistTmp = [];
             foreach ($clientlist as $client) {
-                if ($client['client_type'] == 1 && !HANASHI_TEAMSPEAK_VIEWER_SHOW_QUERY) continue;
+                if ($client['client_type'] == 1 && !HANASHI_TEAMSPEAK_VIEWER_SHOW_QUERY) {
+                    continue;
+                }
 
                 $client['channel'] = 'Unknown';
                 if (isset($channellistTmp[$client['cid']])) {
@@ -38,7 +46,13 @@ class TeamSpeakViewerMenuBuilder extends AbstractCacheBuilder {
 
             if (count($clientlistTmp) > 0) {
                 if (HANASHI_TEAMSPEAK_VIEWER_MENU_GROUPED) {
-                    array_multisort(array_column($clientlistTmp, 'channel'), SORT_ASC, array_column($clientlistTmp, 'client_nickname'), SORT_ASC, $clientlistTmp);
+                    array_multisort(
+                        array_column($clientlistTmp, 'channel'),
+                        SORT_ASC,
+                        array_column($clientlistTmp, 'client_nickname'),
+                        SORT_ASC,
+                        $clientlistTmp
+                    );
                 } else {
                     array_multisort(array_column($clientlistTmp, 'client_nickname'), SORT_ASC, $clientlistTmp);
                 }
@@ -47,8 +61,8 @@ class TeamSpeakViewerMenuBuilder extends AbstractCacheBuilder {
             return $clientlistTmp;
         } catch (TeamSpeakException $e) {
             if (ENABLE_DEBUG_MODE) {
-				throw $e;
-			}
+                throw $e;
+            }
             return [];
         }
     }

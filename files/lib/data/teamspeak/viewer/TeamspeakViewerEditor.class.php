@@ -1,10 +1,13 @@
 <?php
+
 namespace wcf\data\teamspeak\viewer;
+
 use wcf\data\DatabaseObjectEditor;
 
-class TeamspeakViewerEditor extends DatabaseObjectEditor {
+class TeamspeakViewerEditor extends DatabaseObjectEditor
+{
     /**
-	 * @inheritDoc
-	 */
+     * @inheritDoc
+     */
     protected static $baseClass = 'wcf\data\teamspeak\viewer\TeamspeakViewer';
 }

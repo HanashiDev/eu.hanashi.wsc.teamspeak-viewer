@@ -1,5 +1,7 @@
 <?php
+
 namespace wcf\page;
+
 use wcf\data\teamspeak\Teamspeak;
 use wcf\system\cache\builder\TeamSpeakViewerGeneralBuilder;
 use wcf\system\exception\TeamSpeakException;
@@ -8,7 +10,8 @@ use wcf\system\teamspeak\TeamSpeakViewerHandler;
 use wcf\system\template\TeamSpeakViewerTemplateHandler;
 use wcf\system\WCF;
 
-class TeamSpeakViewerPage extends AbstractPage {
+class TeamSpeakViewerPage extends AbstractPage
+{
     public $neededPermissions = ['user.teamspeak-viewer.canView'];
 
     protected $serverinfo;
@@ -20,7 +23,8 @@ class TeamSpeakViewerPage extends AbstractPage {
     /**
      * @inheritDoc
      */
-    public function readData() {
+    public function readData()
+    {
         parent::readData();
 
         try {
@@ -30,19 +34,20 @@ class TeamSpeakViewerPage extends AbstractPage {
             $this->clientlist = $data['clientlist'];
         } catch (TeamSpeakException $e) {
             if (ENABLE_DEBUG_MODE) {
-				throw $e;
-			}
+                throw $e;
+            }
         } catch (ErrorException $e) {
             if (ENABLE_DEBUG_MODE) {
-				throw $e;
-			}
+                throw $e;
+            }
         }
     }
 
     /**
      * @inheritDoc
      */
-    public function assignVariables() {
+    public function assignVariables()
+    {
         parent::assignVariables();
 
         WCF::getTPL()->assign([
@@ -57,22 +62,27 @@ class TeamSpeakViewerPage extends AbstractPage {
 
     /**
      * method to generate TeamSpeak link
-     * 
+     *
      * @return string
      */
-    private function getTeamspeakLink() {
+    private function getTeamspeakLink()
+    {
         $query = [];
-        if($this->serverinfo['port'] != 9987) {
-            $query[] = 'port='.$this->serverinfo['port'];
+        if ($this->serverinfo['port'] != 9987) {
+            $query[] = 'port=' . $this->serverinfo['port'];
         }
-        if ($this->serverinfo['virtualserver_flag_password'] == 1 && HANASHI_TEAMSPEAK_VIEWER_SHOW_PASSWORD && !empty(HANASHI_TEAMSPEAK_VIEWER_PASSWORD)) {
-            $query[] = 'password='.HANASHI_TEAMSPEAK_VIEWER_PASSWORD;
+        if (
+            $this->serverinfo['virtualserver_flag_password'] == 1 &&
+            HANASHI_TEAMSPEAK_VIEWER_SHOW_PASSWORD &&
+            !empty(HANASHI_TEAMSPEAK_VIEWER_PASSWORD)
+        ) {
+            $query[] = 'password=' . HANASHI_TEAMSPEAK_VIEWER_PASSWORD;
         }
 
         $link = 'ts3server://';
         $link .= urlencode($this->serverinfo['hostname']);
         if (count($query) > 0) {
-            $link .= '?'.implode('&', $query);
+            $link .= '?' . implode('&', $query);
         }
         return $link;
     }

@@ -1,5 +1,7 @@
 <?php
+
 namespace wcf\system\teamspeak;
+
 use wcf\system\cache\builder\TeamSpeakViewerChannelBuilder;
 use wcf\system\exception\TeamSpeakException;
 use wcf\util\TeamSpeakUtil;
@@ -7,12 +9,13 @@ use wcf\util\TeamSpeakUtil;
 /**
  * Teamspeak Handler for this extension
  *
- * @author	Peter Lohse <hanashi@hanashi.eu>
- * @copyright	Hanashi
- * @license	Freie Lizenz (https://hanashi.eu/freie-lizenz/)
- * @package	WoltLabSuite\Core\System\Teamspeak
+ * @author  Peter Lohse <hanashi@hanashi.eu>
+ * @copyright   Hanashi
+ * @license Freie Lizenz (https://hanashi.eu/freie-lizenz/)
+ * @package WoltLabSuite\Core\System\Teamspeak
  */
-class TeamSpeakViewerHandler extends AbstractTeamSpeakHandler {
+class TeamSpeakViewerHandler extends AbstractTeamSpeakHandler
+{
     /**
      * @inheritDoc
      */
@@ -20,10 +23,11 @@ class TeamSpeakViewerHandler extends AbstractTeamSpeakHandler {
 
     /**
      * get channels in correct order
-     * 
+     *
      * @return array
      */
-    public function getChannels() {
+    public function getChannels()
+    {
         try {
             $channellist = $this->channellist(['-icon', '-flags', '-voice']);
 
@@ -43,11 +47,19 @@ class TeamSpeakViewerHandler extends AbstractTeamSpeakHandler {
             foreach ($channelListIconTmp as $channel) {
                 if ($channel['pid'] == 0) {
                     // Berechnen ob Channel spacer ist
-                    if (preg_match('/^(\[([a-z\*])[a-zA-Z0-9\*]?spacer([0-9a-zA-Z]+)?\])(.*)$/', $channel['channel_name'], $matches)) {
+                    if (
+                        preg_match(
+                            '/^(\[([a-z\*])[a-zA-Z0-9\*]?spacer([0-9a-zA-Z]+)?\])(.*)$/',
+                            $channel['channel_name'],
+                            $matches
+                        )
+                    ) {
                         $channel['is_spacer'] = true;
 
                         $spacerType = strtoupper($matches[2]);
-                        if ($spacerType == '*') $spacerType = 'Repeat';
+                        if ($spacerType == '*') {
+                            $spacerType = 'Repeat';
+                        }
                         $channel['spacer_type'] = $spacerType;
 
                         $channelName = $matches[4];
@@ -64,20 +76,25 @@ class TeamSpeakViewerHandler extends AbstractTeamSpeakHandler {
                     }
 
                     $channelListTmp[$channel['cid']] = $channel;
-                    $channelListTmp[$channel['cid']]['childs'] = TeamSpeakUtil::getChilds($channelListIconTmp, 'pid', $channel['cid']);
+                    $channelListTmp[$channel['cid']]['childs'] = TeamSpeakUtil::getChilds(
+                        $channelListIconTmp,
+                        'pid',
+                        $channel['cid']
+                    );
                 }
             }
 
             return $channelListTmp;
         } catch (TeamSpeakException $e) {
             if (ENABLE_DEBUG_MODE) {
-				throw $e;
-			}
+                throw $e;
+            }
             return [];
         }
     }
 
-    public function getServergroups() {
+    public function getServergroups()
+    {
         try {
             $servergrouplist = $this->servergrouplist();
 
@@ -85,37 +102,38 @@ class TeamSpeakViewerHandler extends AbstractTeamSpeakHandler {
             foreach ($servergrouplist as $servergroup) {
                 if ($servergroup['iconid'] == 0) {
                     $servergroup['iconid'] = null;
-                } else if ($servergroup['iconid'] == 100) {
+                } elseif ($servergroup['iconid'] == 100) {
                     $servergroup['iconid'] = 'group_100.svg';
-                } else if ($servergroup['iconid'] == 200) {
+                } elseif ($servergroup['iconid'] == 200) {
                     $servergroup['iconid'] = 'group_200.svg';
-                } else if ($servergroup['iconid'] == 300) {
+                } elseif ($servergroup['iconid'] == 300) {
                     $servergroup['iconid'] = 'group_300.svg';
-                } else if ($servergroup['iconid'] == 500) {
+                } elseif ($servergroup['iconid'] == 500) {
                     $servergroup['iconid'] = 'group_500.svg';
-                } else if ($servergroup['iconid'] == 600) {
+                } elseif ($servergroup['iconid'] == 600) {
                     $servergroup['iconid'] = 'group_600.svg';
                 } else {
                     $servergroup['iconid'] = TeamSpeakUtil::getCorrectIconID($servergroup['iconid']);
                     if ($this->checkIcon($servergroup['iconid'])) {
-                        $servergroup['iconid'] = 'icon_'.$servergroup['iconid'].'.png';
+                        $servergroup['iconid'] = 'icon_' . $servergroup['iconid'] . '.png';
                     } else {
                         $servergroup['iconid'] = 0;
                     }
                 }
                 $servergrouplistTmp[$servergroup['sgid']] = $servergroup;
             }
-            
+
             return $servergrouplistTmp;
         } catch (TeamSpeakException $e) {
             if (ENABLE_DEBUG_MODE) {
-				throw $e;
-			}
+                throw $e;
+            }
             return [];
         }
     }
 
-    public function getChannelgroups() {
+    public function getChannelgroups()
+    {
         try {
             $channelgrouplist = $this->channelgrouplist();
 
@@ -123,44 +141,45 @@ class TeamSpeakViewerHandler extends AbstractTeamSpeakHandler {
             foreach ($channelgrouplist as $channelgroup) {
                 if ($channelgroup['iconid'] == 0) {
                     $channelgroup['iconid'] = null;
-                } else if ($channelgroup['iconid'] == 100) {
+                } elseif ($channelgroup['iconid'] == 100) {
                     $channelgroup['iconid'] = 'group_100.svg';
-                } else if ($channelgroup['iconid'] == 200) {
+                } elseif ($channelgroup['iconid'] == 200) {
                     $channelgroup['iconid'] = 'group_200.svg';
-                } else if ($channelgroup['iconid'] == 300) {
+                } elseif ($channelgroup['iconid'] == 300) {
                     $channelgroup['iconid'] = 'group_300.svg';
-                } else if ($channelgroup['iconid'] == 500) {
+                } elseif ($channelgroup['iconid'] == 500) {
                     $channelgroup['iconid'] = 'group_500.svg';
-                } else if ($channelgroup['iconid'] == 600) {
+                } elseif ($channelgroup['iconid'] == 600) {
                     $channelgroup['iconid'] = 'group_600.svg';
                 } else {
                     $channelgroup['iconid'] = TeamSpeakUtil::getCorrectIconID($channelgroup['iconid']);
                     if ($this->checkIcon($channelgroup['iconid'])) {
-                        $channelgroup['iconid'] = 'icon_'.$channelgroup['iconid'].'.png';
+                        $channelgroup['iconid'] = 'icon_' . $channelgroup['iconid'] . '.png';
                     } else {
                         $channelgroup['iconid'] = 0;
                     }
                 }
                 $channelgrouplistTmp[$channelgroup['cgid']] = $channelgroup;
             }
-            
+
             return $channelgrouplistTmp;
         } catch (TeamSpeakException $e) {
             if (ENABLE_DEBUG_MODE) {
-				throw $e;
-			}
+                throw $e;
+            }
             return [];
         }
     }
 
-    public function getClients() {
+    public function getClients()
+    {
         try {
             $clientlist = $this->clientlist(['-away', '-voice', '-groups', '-badges']);
             $servergrouplist = $this->getServergroups();
             $channelgrouplist = $this->getChannelgroups();
 
             $sort = [];
-            foreach($clientlist as $key => $value) {
+            foreach ($clientlist as $key => $value) {
                 $sort['client_nickname'][$key] = $value['client_nickname'];
                 $sort['client_talk_power'][$key] = $value['client_talk_power'];
             }
@@ -168,31 +187,35 @@ class TeamSpeakViewerHandler extends AbstractTeamSpeakHandler {
 
             $clientListTmp = [];
             foreach ($clientlist as $client) {
-                if (!HANASHI_TEAMSPEAK_VIEWER_SHOW_QUERY && $client['client_type'] == 1) continue;
+                if (!HANASHI_TEAMSPEAK_VIEWER_SHOW_QUERY && $client['client_type'] == 1) {
+                    continue;
+                }
                 if (!empty($client['client_badges'])) {
-					$clientBadgesTmp = explode(':', $client['client_badges']);
-					foreach ($clientBadgesTmp as $clientBadgeTmp) {
-						$badgesArr = explode('=', $clientBadgeTmp);
-						if (strtolower($badgesArr[0]) == 'overwolf') {
-							if ($badgesArr[1] == '1') {
-								$client['overwolf'] = true;
-							}
-						} else if ($badgesArr[0] == 'badges') {
-							if (!empty($badgesArr[1])) {
-								$badges = explode(',', $badgesArr[1]);
-								$badgesTmp = [];
-								foreach ($badges as $badge) {
-									$badgeTmp = $this->badge($badge);
-									if (empty($badgeTmp)) continue;
-									$badgesTmp[] = $badgeTmp;
-								}
-								$client['client_badges'] = $badgesTmp;
-							}
-						}
-					}
-					if (!is_array($client['client_badges'])) {
-						$client['client_badges'] = [];
-					}
+                    $clientBadgesTmp = explode(':', $client['client_badges']);
+                    foreach ($clientBadgesTmp as $clientBadgeTmp) {
+                        $badgesArr = explode('=', $clientBadgeTmp);
+                        if (strtolower($badgesArr[0]) == 'overwolf') {
+                            if ($badgesArr[1] == '1') {
+                                $client['overwolf'] = true;
+                            }
+                        } elseif ($badgesArr[0] == 'badges') {
+                            if (!empty($badgesArr[1])) {
+                                $badges = explode(',', $badgesArr[1]);
+                                $badgesTmp = [];
+                                foreach ($badges as $badge) {
+                                    $badgeTmp = $this->badge($badge);
+                                    if (empty($badgeTmp)) {
+                                        continue;
+                                    }
+                                    $badgesTmp[] = $badgeTmp;
+                                }
+                                $client['client_badges'] = $badgesTmp;
+                            }
+                        }
+                    }
+                    if (!is_array($client['client_badges'])) {
+                        $client['client_badges'] = [];
+                    }
                 }
 
                 $servergroupIDs = explode(',', $client['client_servergroups']);
@@ -205,7 +228,8 @@ class TeamSpeakViewerHandler extends AbstractTeamSpeakHandler {
                 $client['client_servergroups'] = $groupIcons;
 
                 if (!empty($channelgrouplist[$client['client_channel_group_id']]['iconid'])) {
-                    $client['client_channel_group_id'] = $channelgrouplist[$client['client_channel_group_id']]['iconid'];
+                    $iconID = $channelgrouplist[$client['client_channel_group_id']]['iconid'];
+                    $client['client_channel_group_id'] = $iconID;
                 } else {
                     $client['client_channel_group_id'] = null;
                 }
@@ -216,18 +240,19 @@ class TeamSpeakViewerHandler extends AbstractTeamSpeakHandler {
             return $clientListTmp;
         } catch (TeamSpeakException $e) {
             if (ENABLE_DEBUG_MODE) {
-				throw $e;
-			}
+                throw $e;
+            }
             return [];
         }
     }
 
-    public function checkIcon($iconID) {
-        $filename = 'icon_'.$iconID;
-        if (!file_exists(WCF_DIR . 'images/teamspeak_viewer/'.$filename.'.png')) {
+    public function checkIcon($iconID)
+    {
+        $filename = 'icon_' . $iconID;
+        if (!file_exists(WCF_DIR . 'images/teamspeak_viewer/' . $filename . '.png')) {
             try {
                 $tmpFile = $this->downloadFile(0, $filename);
-                rename($tmpFile, WCF_DIR . 'images/teamspeak_viewer/'.$filename.'.png');
+                rename($tmpFile, WCF_DIR . 'images/teamspeak_viewer/' . $filename . '.png');
             } catch (TeamSpeakException $e) {
                 return false;
             }
@@ -235,7 +260,8 @@ class TeamSpeakViewerHandler extends AbstractTeamSpeakHandler {
         return true;
     }
 
-    public function badge($guid) {
+    public function badge($guid)
+    {
         $badges = [
             '1cb07348-34a4-4741-b50f-c41e584370f7' => 'addon_author.svg',
             '50bbdbc8-0f2a-46eb-9808-602225b49627' => 'gamescom_2016.svg',
@@ -259,7 +285,9 @@ class TeamSpeakViewerHandler extends AbstractTeamSpeakHandler {
             '6b187e83-873b-46b0-b2c2-a31af15e76a4' => 'cap_red.svg',
             '4b0fd4f5-d456-4294-973d-853a1db5c7d8' => 'Valentines_Badge.svg'
         ];
-        if (empty($badges[$guid])) return;
+        if (empty($badges[$guid])) {
+            return;
+        }
         return $badges[$guid];
     }
 }

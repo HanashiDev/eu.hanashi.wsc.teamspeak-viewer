@@ -1,26 +1,32 @@
 <?php
+
 namespace wcf\system\cache\builder;
+
 use wcf\system\exception\TeamSpeakException;
 use wcf\system\teamspeak\TeamSpeakViewerHandler;
 use wcf\system\WCF;
 use wcf\util\FileUtil;
 
-class TeamSpeakViewerClientBuilder extends AbstractCacheBuilder {
+class TeamSpeakViewerClientBuilder extends AbstractCacheBuilder
+{
     /**
      * @inheritDoc
      */
     protected $maxLifetime = HANASHI_TEAMSPEAK_VIEWER_CACHE_INTERVAL;
-    
+
     /**
-	 * @inheritDoc
-	 */
-    protected function rebuild(array $parameters) {
+     * @inheritDoc
+     */
+    protected function rebuild(array $parameters)
+    {
         try {
             $id = $parameters[0];
             $clientinfo = TeamSpeakViewerHandler::getInstance()->clientinfo(['clid' => $id]);
             $servergrouplist = TeamSpeakViewerHandler::getInstance()->getServergroups();
             $channelgrouplist = TeamSpeakViewerHandler::getInstance()->getChannelgroups();
-            if (count($clientinfo) == 0) return [];
+            if (count($clientinfo) == 0) {
+                return [];
+            }
 
             $avatar = false;
             if (!empty($clientinfo[0]['client_flag_avatar'])) {
@@ -51,9 +57,13 @@ class TeamSpeakViewerClientBuilder extends AbstractCacheBuilder {
             if (!empty($channelgrouplist[$clientinfo[0]['client_channel_group_id']])) {
                 $channelGroup = $channelgrouplist[$clientinfo[0]['client_channel_group_id']];
                 if ($clientinfo[0]['cid'] != $clientinfo[0]['client_channel_group_inherited_channel_id']) {
-                    $inherited = TeamSpeakViewerChannelBuilder::getInstance()->getData([$clientinfo[0]['client_channel_group_inherited_channel_id']]);
+                    $inherited = TeamSpeakViewerChannelBuilder::getInstance()->getData(
+                        [
+                            $clientinfo[0]['client_channel_group_inherited_channel_id']
+                        ]
+                    );
                     // TODO: Sprachvariable
-                    $channelGroup['name'] = $channelGroup['name'].' [Geerbt von: '.$inherited['channel_name'].']';
+                    $channelGroup['name'] = $channelGroup['name'] . ' [Geerbt von: ' . $inherited['channel_name'] . ']';
                 }
                 $channelGroupTmp[] = $channelGroup;
             }
@@ -62,7 +72,8 @@ class TeamSpeakViewerClientBuilder extends AbstractCacheBuilder {
             if (isset($clientinfo[0]['client_base64HashClientUID'])) {
                 $client_base64HashClientUID = $clientinfo[0]['client_base64HashClientUID'];
             }
-            
+
+            $clientChannelGroupInheritedChannelID = $clientinfo[0]['client_channel_group_inherited_channel_id'];
             return [
                 'client_nickname' => $clientinfo[0]['client_nickname'],
                 'client_version' => $clientinfo[0]['client_version'],
@@ -71,7 +82,7 @@ class TeamSpeakViewerClientBuilder extends AbstractCacheBuilder {
                 'client_servergroups' => $serverGroupsTmp,
                 'client_channel_group_id' => $channelGroupTmp,
                 'cid' => $clientinfo[0]['cid'],
-                'client_channel_group_inherited_channel_id' => $clientinfo[0]['client_channel_group_inherited_channel_id'],
+                'client_channel_group_inherited_channel_id' => $clientChannelGroupInheritedChannelID,
                 'avatar' => $avatar,
                 'client_base64HashClientUID' => $client_base64HashClientUID,
                 'client_input_muted' => $clientinfo[0]['client_input_muted'],
@@ -89,17 +100,18 @@ class TeamSpeakViewerClientBuilder extends AbstractCacheBuilder {
             ];
         } catch (TeamSpeakException $e) {
             if (ENABLE_DEBUG_MODE) {
-				throw $e;
-			}
+                throw $e;
+            }
             return [];
         }
     }
 
-    protected function downloadAvatar($clientUID) {
+    protected function downloadAvatar($clientUID)
+    {
         try {
-            $tmpFile = TeamSpeakViewerHandler::getInstance()->downloadFile(0, 'avatar_'.$clientUID);
-            FileUtil::makePath(WCF_DIR.'images/teamspeak_viewer/avatar/');
-            rename($tmpFile, WCF_DIR . 'images/teamspeak_viewer/avatar/avatar_'.$clientUID.'.png');
+            $tmpFile = TeamSpeakViewerHandler::getInstance()->downloadFile(0, 'avatar_' . $clientUID);
+            FileUtil::makePath(WCF_DIR . 'images/teamspeak_viewer/avatar/');
+            rename($tmpFile, WCF_DIR . 'images/teamspeak_viewer/avatar/avatar_' . $clientUID . '.png');
         } catch (TeamSpeakException $e) {
             return false;
         }
