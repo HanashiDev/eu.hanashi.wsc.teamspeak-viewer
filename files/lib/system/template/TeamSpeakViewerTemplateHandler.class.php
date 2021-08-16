@@ -4,6 +4,6 @@ use wcf\system\WCF;
 
 class TeamSpeakViewerTemplateHandler {
     public function showChannels($channels) {
-        return WCF::getTPL()->fetch('__teamSpeakViewerChildChannels', 'wcf', ['__childChannels' => $channels]);
+        return WCF::getTPL()->fetch('__teamSpeakViewerChildChannels', 'wcf', ['__childChannels' => $channels], true);
     }
 }
