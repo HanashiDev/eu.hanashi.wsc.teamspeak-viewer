@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<data xmlns="https://www.woltlab.com" xmlns:xsi="https://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://www.woltlab.com https://www.woltlab.com/XSD/vortex/option.xsd">
+<data xmlns="http://www.woltlab.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.woltlab.com http://www.woltlab.com/XSD/2019/option.xsd">
     <import>
         <categories>
             <category name="teamspeak_viewer">
@@ -14,12 +14,12 @@
             <option name="hanashi_teamspeak_viewer_cache_interval">
                 <categoryname>teamspeak_viewer</categoryname>
                 <optiontype>integer</optiontype>
-				<defaultvalue>10</defaultvalue>
+                <defaultvalue>10</defaultvalue>
             </option>
             <option name="hanashi_teamspeak_viewer_show_data">
                 <categoryname>teamspeak_viewer</categoryname>
                 <optiontype>boolean</optiontype>
-				<defaultvalue>1</defaultvalue>
+                <defaultvalue>1</defaultvalue>
             </option>
             <option name="hanashi_teamspeak_viewer_address">
                 <categoryname>teamspeak_viewer</categoryname>
@@ -32,7 +32,7 @@
             <option name="hanashi_teamspeak_viewer_show_password">
                 <categoryname>teamspeak_viewer</categoryname>
                 <optiontype>boolean</optiontype>
-				<defaultvalue>1</defaultvalue>
+                <defaultvalue>1</defaultvalue>
             </option>
             <option name="hanashi_teamspeak_viewer_password">
                 <categoryname>teamspeak_viewer</categoryname>
@@ -41,28 +41,28 @@
             <option name="hanashi_teamspeak_viewer_show_connect_button">
                 <categoryname>teamspeak_viewer</categoryname>
                 <optiontype>boolean</optiontype>
-				<defaultvalue>1</defaultvalue>
+                <defaultvalue>1</defaultvalue>
             </option>
             <option name="hanashi_teamspeak_viewer_show_badges">
                 <categoryname>teamspeak_viewer</categoryname>
                 <optiontype>boolean</optiontype>
-				<defaultvalue>1</defaultvalue>
+                <defaultvalue>1</defaultvalue>
             </option>
             <option name="hanashi_teamspeak_viewer_show_menu">
                 <categoryname>teamspeak_viewer</categoryname>
                 <optiontype>boolean</optiontype>
-				<defaultvalue>1</defaultvalue>
+                <defaultvalue>1</defaultvalue>
                 <enableoptions>hanashi_teamspeak_viewer_menu_grouped</enableoptions>
             </option>
             <option name="hanashi_teamspeak_viewer_menu_grouped">
                 <categoryname>teamspeak_viewer</categoryname>
                 <optiontype>boolean</optiontype>
-				<defaultvalue>1</defaultvalue>
+                <defaultvalue>1</defaultvalue>
             </option>
             <option name="hanashi_teamspeak_viewer_show_query">
                 <categoryname>teamspeak_viewer</categoryname>
                 <optiontype>boolean</optiontype>
-				<defaultvalue>0</defaultvalue>
+                <defaultvalue>0</defaultvalue>
             </option>
         </options>
     </import>

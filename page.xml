@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<data xmlns="https://www.woltlab.com" xmlns:xsi="https://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://www.woltlab.com https://www.woltlab.com/XSD/vortex/page.xsd">
-	<import>
-		<page identifier="eu.hanashi.wsc.teamspeak-viewer.viewer-page">
-			<pageType>system</pageType>
-			<controller>wcf\page\TeamSpeakViewerPage</controller>
-			<options>hanashi_teamspeak_viewer_identity</options>
-			<permissions>user.teamspeak-viewer.canView</permissions>
-			<name language="de"><![CDATA[TeamSpeak-Viewer]]></name>
-			<name language="en"><![CDATA[TeamSpeak-Viewer]]></name>
-			
-			<content language="en">
-				<title><![CDATA[TeamSpeak-Viewer]]></title>
-			</content>
-			<content language="de">
-				<title><![CDATA[TeamSpeak-Viewer]]></title>
-			</content>
-		</page>
-	</import>
+<data xmlns="http://www.woltlab.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.woltlab.com http://www.woltlab.com/XSD/2019/page.xsd">
+    <import>
+        <page identifier="eu.hanashi.wsc.teamspeak-viewer.viewer-page">
+            <pageType>system</pageType>
+            <controller>wcf\page\TeamSpeakViewerPage</controller>
+            <options>hanashi_teamspeak_viewer_identity</options>
+            <permissions>user.teamspeak-viewer.canView</permissions>
+            <name language="de"><![CDATA[TeamSpeak-Viewer]]></name>
+            <name language="en"><![CDATA[TeamSpeak-Viewer]]></name>
+            
+            <content language="en">
+                <title><![CDATA[TeamSpeak-Viewer]]></title>
+            </content>
+            <content language="de">
+                <title><![CDATA[TeamSpeak-Viewer]]></title>
+            </content>
+        </page>
+    </import>
 </data>

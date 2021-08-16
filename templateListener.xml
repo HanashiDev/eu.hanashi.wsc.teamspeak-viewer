@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<data xmlns="http://www.woltlab.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.woltlab.com http://www.woltlab.com/XSD/vortex/templateListener.xsd">
-	<import>
-		<templatelistener name="userPanel">
-			<environment>user</environment>
-			<templatename>pageHeaderUser</templatename>
-			<eventname>menuItems</eventname>
-			<templatecode><![CDATA[{include file='__userPanelMenuTeamSpeakDropdown'}]]></templatecode>
-		</templatelistener>
-		<templatelistener name="mobileMenuConversation">
-			<environment>user</environment>
-			<templatename>pageMenuMobile</templatename>
-			<eventname>userMenuItems</eventname>
-			<templatecode><![CDATA[{include file='__mobileMenuTeamSpeak'}]]></templatecode>
-		</templatelistener>
-		<templatelistener name="teamSpeakViewerCopyright">
-			<environment>user</environment>
-			<templatename>pageFooterCopyright</templatename>
-			<eventname>copyright</eventname>
-			<templatecode><![CDATA[{include file='__teamSpeakViewerCopyright'}]]></templatecode>
-		</templatelistener>
-	</import>
+<data xmlns="http://www.woltlab.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.woltlab.com http://www.woltlab.com/XSD/2019/templateListener.xsd">
+    <import>
+        <templatelistener name="userPanel">
+            <environment>user</environment>
+            <templatename>pageHeaderUser</templatename>
+            <eventname>menuItems</eventname>
+            <templatecode><![CDATA[{include file='__userPanelMenuTeamSpeakDropdown'}]]></templatecode>
+        </templatelistener>
+        <templatelistener name="mobileMenuConversation">
+            <environment>user</environment>
+            <templatename>pageMenuMobile</templatename>
+            <eventname>userMenuItems</eventname>
+            <templatecode><![CDATA[{include file='__mobileMenuTeamSpeak'}]]></templatecode>
+        </templatelistener>
+        <templatelistener name="teamSpeakViewerCopyright">
+            <environment>user</environment>
+            <templatename>pageFooterCopyright</templatename>
+            <eventname>copyright</eventname>
+            <templatecode><![CDATA[{include file='__teamSpeakViewerCopyright'}]]></templatecode>
+        </templatelistener>
+    </import>
 </data>
