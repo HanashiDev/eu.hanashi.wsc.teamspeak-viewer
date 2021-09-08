@@ -277,7 +277,7 @@ class TeamSpeakViewerHandler extends AbstractTeamSpeakHandler
             '2c9698c1-1fec-4baa-a28f-4845f045f42f' => 'E_SoulEgg.svg',
             '34dbfa8f-bd27-494c-aa08-a312fc0bb240' => 'hero_2017.svg',
             '4086a249-a503-4f31-9e83-8a0a8e3089bd' => 'Tim-O-Lantern.svg',
-            '450f81c1-ab41-4211-a338-222fa94ed157' => 'addon_author_bronze.svg'
+            '450f81c1-ab41-4211-a338-222fa94ed157' => 'addon_author_bronze.svg',
             '4b0fd4f5-d456-4294-973d-853a1db5c7d8' => 'Valentines_Badge.svg',
             '4b27be5a-b92a-4b30-8b2d-14b59653f427' => '20_years.svg',
             '4eef1ecf-a0ea-423d-bfd0-496543a00305' => 'gamescom_2018.svg',
@@ -314,7 +314,7 @@ class TeamSpeakViewerHandler extends AbstractTeamSpeakHandler
             'd6062d9c-42a3-49c9-91dd-8c43a5a46805' => 'BugBadge_Splat.svg',
             'd95f9901-c42d-4bac-8849-7164fd9e2310' => 'paris_gamesweek_2016.svg',
             'de7bd960-eb02-47e1-9ce2-a44f6e255d8f' => 'Happy_Holidays.svg"',
-            'dfc70674-0fd0-431e-b3a1-edc32d7b09b2' => 'scill.svg'
+            'dfc70674-0fd0-431e-b3a1-edc32d7b09b2' => 'scill.svg',
             'ed85bdff-2a2b-4bea-a1a5-4d06fcc0d776' => 'Christmas.svg',
             'ef567ec5-f46e-4520-be07-6021023cf6bd' => 'Sponsorship.svg',
             'f22c22f1-8e2d-4d99-8de9-f352dc26ac5b' => 'rbtv.svg',
