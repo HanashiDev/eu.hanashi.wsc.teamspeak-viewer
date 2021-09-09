@@ -262,11 +262,11 @@ define(['DateUtil','Ajax','Language'], function(DateUtil, Ajax, Language) {
 
         _ajaxSetup: function() {
             return {
-				data: {
-					className: 'wcf\\data\\teamspeak\\viewer\\TeamspeakViewerAction'
-				},
-				silent: false
-			};
+                data: {
+                    className: 'wcf\\data\\teamspeak\\viewer\\TeamspeakViewerAction'
+                },
+                silent: false
+            };
         },
 
         _ajaxSuccess: function(data) {
