@@ -31,6 +31,7 @@
 		<item name="wcf.js.teamSpeakViewer.versionContent"><![CDATA[{$version} auf {$platform}]]></item>
 		<item name="wcf.js.teamSpeakViewer.onlineSinceTitle"><![CDATA[Online seit:]]></item>
 		<item name="wcf.js.teamSpeakViewer.descriptionTitle"><![CDATA[Beschreibung:]]></item>
+		<item name="wcf.js.teamSpeakViewer.badgesTitle"><![CDATA[Badges:]]></item>
 		<item name="wcf.js.teamSpeakViewer.servergroupsTitle"><![CDATA[Server Gruppen:]]></item>
 		<item name="wcf.js.teamSpeakViewer.channelgroupTitle"><![CDATA[Channel Gruppe:]]></item>
 		<item name="wcf.js.teamSpeakViewer.avatarTitle"><![CDATA[Avatar:]]></item>
