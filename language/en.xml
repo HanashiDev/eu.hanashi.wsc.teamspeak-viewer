@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<language xmlns="https://www.woltlab.com" xmlns:xsi="https://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://www.woltlab.com https://www.woltlab.com/XSD/vortex/language.xsd" languagecode="en">
+<!-- 
+Translation provided by Plenet_OTAKU
+-->
+	<category name="wcf.acp.option">
+		<item name="wcf.acp.option.category.teamspeak_viewer"><![CDATA[Viewer]]></item>
+		<item name="wcf.acp.option.hanashi_teamspeak_viewer_identity"><![CDATA[TeamSpeak connection]]></item>
+		<item name="wcf.acp.option.hanashi_teamspeak_viewer_identity.description"><![CDATA[{if LANGUAGE_USE_INFORMAL_VARIANT}Choose{else}Choose you{/if} the TeamSpeak connection for the viewer.]]></item>
+		<item name="wcf.acp.option.hanashi_teamspeak_viewer_cache_interval"><![CDATA[Cache interval (in seconds)]]></item>
+		<item name="wcf.acp.option.hanashi_teamspeak_viewer_cache_interval.description"><![CDATA[Every how many seconds you want the current view to be saved in the cache.]]></item>
+		<item name="wcf.acp.option.hanashi_teamspeak_viewer_show_data"><![CDATA[Show connection data]]></item>
+		<item name="wcf.acp.option.hanashi_teamspeak_viewer_show_data.description"><![CDATA[If this option is active, the data for connecting to the server is displayed in the server viewer.]]></item>
+		<item name="wcf.acp.option.hanashi_teamspeak_viewer_address"><![CDATA[Alternative address]]></item>
+		<item name="wcf.acp.option.hanashi_teamspeak_viewer_address.description"><![CDATA[here {if LANGUAGE_USE_INFORMAL_VARIANT}you{/if}can specify a different address for the TeamSpeak server. This is displayed instead of the query address.]]></item>
+		<item name="wcf.acp.option.hanashi_teamspeak_viewer_port"><![CDATA[Alternative Port]]></item>
+		<item name="wcf.acp.option.hanashi_teamspeak_viewer_port.description"><![CDATA[here {if LANGUAGE_USE_INFORMAL_VARIANT}you{/if}can specify a different address for the TeamSpeak server. This is displayed instead of the query address.]]></item>
+		<item name="wcf.acp.option.hanashi_teamspeak_viewer_show_password"><![CDATA[Show server password]]></item>
+		<item name="wcf.acp.option.hanashi_teamspeak_viewer_show_password.description"><![CDATA[If this option is active, the server password specified below it is displayed in the viewer.]]></item>
+		<item name="wcf.acp.option.hanashi_teamspeak_viewer_password"><![CDATA[Server password]]></item>
+		<item name="wcf.acp.option.hanashi_teamspeak_viewer_password.description"><![CDATA[The server password of the selected server. If this field is left blank, no server password is displayed.]]></item>
+		<item name="wcf.acp.option.hanashi_teamspeak_viewer_show_connect_button"><![CDATA[Show "Connect Now" Button]]></item>
+		<item name="wcf.acp.option.hanashi_teamspeak_viewer_show_badges"><![CDATA[Show TeamSpeak-Badges]]></item>
+		<item name="wcf.acp.option.hanashi_teamspeak_viewer_show_menu"><![CDATA[Show TeamSpeak viewer in menu]]></item>
+		<item name="wcf.acp.option.hanashi_teamspeak_viewer_menu_grouped"><![CDATA[Sort menu grouped]]></item>
+		<item name="wcf.acp.option.hanashi_teamspeak_viewer_menu_grouped.description"><![CDATA[Sorts the users in the menu first by channel name and then by user name. Otherwise only by username]]></item>
+		<item name="wcf.acp.option.hanashi_teamspeak_viewer_show_query"><![CDATA[Show Server-Querys]]></item>
+	</category>
+	<category name="wcf.acp.group">
+		<item name="wcf.acp.group.option.user.teamspeak-viewer.canView"><![CDATA[Can see TeamSpeak viewer]]></item>
+	</category>
+	<category name="wcf.js.teamSpeakViewer">
+		<item name="wcf.js.teamSpeakViewer.versionTitle"><![CDATA[Version:]]></item>
+		<item name="wcf.js.teamSpeakViewer.versionContent"><![CDATA[{$version} of {$platform}]]></item>
+		<item name="wcf.js.teamSpeakViewer.onlineSinceTitle"><![CDATA[Online since:]]></item>
+		<item name="wcf.js.teamSpeakViewer.descriptionTitle"><![CDATA[Description:]]></item>
+		<item name="wcf.js.teamSpeakViewer.servergroupsTitle"><![CDATA[Server Group:]]></item>
+		<item name="wcf.js.teamSpeakViewer.channelgroupTitle"><![CDATA[Channel Group:]]></item>
+		<item name="wcf.js.teamSpeakViewer.avatarTitle"><![CDATA[Avatar:]]></item>
+		<item name="wcf.js.teamSpeakViewer.channelTopicTitle"><![CDATA[Channel Topic:]]></item>
+		<item name="wcf.js.teamSpeakViewer.codecUnknown"><![CDATA[Unknown]]></item>
+		<item name="wcf.js.teamSpeakViewer.codec0"><![CDATA[Speex Narrowband]]></item>
+		<item name="wcf.js.teamSpeakViewer.codec1"><![CDATA[Speex Wideband]]></item>
+		<item name="wcf.js.teamSpeakViewer.codec2"><![CDATA[Speex Ultra-Wideband]]></item>
+		<item name="wcf.js.teamSpeakViewer.codec3"><![CDATA[CELT Mono]]></item>
+		<item name="wcf.js.teamSpeakViewer.codec4"><![CDATA[Opus Voice]]></item>
+		<item name="wcf.js.teamSpeakViewer.codec5"><![CDATA[Opus Music]]></item>
+		<item name="wcf.js.teamSpeakViewer.codecTitle"><![CDATA[Audio codec:]]></item>
+		<item name="wcf.js.teamSpeakViewer.flag_permanent"><![CDATA[Permanent]]></item>
+		<item name="wcf.js.teamSpeakViewer.flag_semi_permanent"><![CDATA[Semi-permanent]]></item>
+		<item name="wcf.js.teamSpeakViewer.flag_temporary"><![CDATA[Temporary]]></item>
+		<item name="wcf.js.teamSpeakViewer.flag_default"><![CDATA[Standard]]></item>
+		<item name="wcf.js.teamSpeakViewer.flag_password"><![CDATA[Password]]></item>
+		<item name="wcf.js.teamSpeakViewer.settingsTitle"><![CDATA[Properties:]]></item>
+		<item name="wcf.js.teamSpeakViewer.unlimited"><![CDATA[Unlimited]]></item>
+		<item name="wcf.js.teamSpeakViewer.actualClientsTitle"><![CDATA[Current clients:]]></item>
+		<item name="wcf.js.teamSpeakViewer.moderatedTitle"><![CDATA[Moderated:]]></item>
+		<item name="wcf.js.teamSpeakViewer.yes"><![CDATA[Yes]]></item>
+		<item name="wcf.js.teamSpeakViewer.hostbannerTitle"><![CDATA[Hostbanner:]]></item>
+		<item name="wcf.js.teamSpeakViewer.addressTitle"><![CDATA[Adress:]]></item>
+		<item name="wcf.js.teamSpeakViewer.passwordTitle"><![CDATA[Password:]]></item>
+		<item name="wcf.js.teamSpeakViewer.versionTitle"><![CDATA[Version:]]></item>
+		<item name="wcf.js.teamSpeakViewer.actualChannelsTitle"><![CDATA[Current channels:]]></item>
+	</category>
+	<category name="wcf.page.teamSpeakViewer">
+		<item name="wcf.page.teamSpeakViewer.title"><![CDATA[TeamSpeak-Viewer]]></item>
+		<item name="wcf.page.teamSpeakViewer.noUsers"><![CDATA[There are no users online.]]></item>
+		<item name="wcf.page.teamSpeakViewer.usersOnline"><![CDATA[users online]]></item>
+		<item name="wcf.page.teamSpeakViewer.connectNow"><![CDATA[Connect now]]></item>
+		<item name="wcf.page.teamSpeakViewer.channellist"><![CDATA[Channel list]]></item>
+		<item name="wcf.page.teamSpeakViewer.notReachable"><![CDATA[The TeamSpeak server is currently unavailable.]]></item>
+	</category>
+	<category name="wcf.copyright">
+		<item name="wcf.copyright.teamSpeakViewer"><![CDATA[TeamSpeak viewer developed by Hanashi]]></item>
+	</category>
+</language>
