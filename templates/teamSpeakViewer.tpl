@@ -134,7 +134,7 @@
                 'wcf.js.teamSpeakViewer.versionContent': '{capture assign=versionContent}{lang __literal=true}wcf.js.teamSpeakViewer.versionContent{/lang}{/capture}{@$versionContent|encodeJS}',
                 'wcf.js.teamSpeakViewer.onlineSinceTitle': '{lang}wcf.js.teamSpeakViewer.onlineSinceTitle{/lang}',
                 'wcf.js.teamSpeakViewer.descriptionTitle': '{lang}wcf.js.teamSpeakViewer.descriptionTitle{/lang}',
-				'wcf.js.teamSpeakViewer.badgesTitle': '{lang}wcf.js.teamSpeakViewer.badgesTitle{/lang}',
+                'wcf.js.teamSpeakViewer.badgesTitle': '{lang}wcf.js.teamSpeakViewer.badgesTitle{/lang}',
                 'wcf.js.teamSpeakViewer.servergroupsTitle': '{lang}wcf.js.teamSpeakViewer.servergroupsTitle{/lang}',
                 'wcf.js.teamSpeakViewer.channelgroupTitle': '{lang}wcf.js.teamSpeakViewer.channelgroupTitle{/lang}',
                 'wcf.js.teamSpeakViewer.avatarTitle': '{lang}wcf.js.teamSpeakViewer.avatarTitle{/lang}',
