@@ -67,6 +67,9 @@ class TeamSpeakViewerPage extends AbstractPage
      */
     private function getTeamspeakLink()
     {
+        if ($this->serverinfo === null || empty($this->serverinfo)) {
+            return null;
+        }
         $query = [];
         if ($this->serverinfo['port'] != 9987) {
             $query[] = 'port=' . $this->serverinfo['port'];
